@@ -2,7 +2,7 @@
 
 import "./estimate.css";
 import ArchitectureNav from "../components/ArchitectureNav";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { calculateEstimate } from "../lib/estimate-engine";
 import type { EstimateResult } from "../lib/estimate-engine";
 
@@ -31,6 +31,37 @@ export default function EstimatePage() {
   const [error, setError] = useState("");
   const [step, setStep] = useState(1);
   const [calculating, setCalculating] = useState(false);
+
+  const [pixelPhase, setPixelPhase] = useState<"cover" | "reveal" | null>(null);
+  const [pixelRect, setPixelRect] = useState<{ left: number; top: number; width: number; height: number } | null>(null);
+  const cardRef = useRef<HTMLFormElement | null>(null);
+  const transitionLock = useRef(false);
+
+  function transitionTo(nextStep: number) {
+    if (transitionLock.current || nextStep === step) return;
+    transitionLock.current = true;
+    const activeCard = cardRef.current;
+    if (activeCard) {
+      const rect = activeCard.getBoundingClientRect();
+      setPixelRect({
+        left: rect.left,
+        top: rect.top,
+        width: rect.width,
+        height: rect.height,
+      });
+    }
+    setPixelPhase("cover");
+
+    window.setTimeout(() => {
+      setStep(nextStep);
+      setPixelPhase("reveal");
+    }, 650);
+
+    window.setTimeout(() => {
+      setPixelPhase(null);
+      transitionLock.current = false;
+    }, 1500);
+  }
 
   function handleCalculate() {
     setError("");
@@ -63,6 +94,15 @@ export default function EstimatePage() {
 
   return (
     <main className="estimate-page">
+      {pixelPhase && (
+        <div className={`estimate-pixel-overlay is-${pixelPhase}`} style={{ left: pixelRect?.left ?? 0, top: pixelRect?.top ?? 0, width: pixelRect?.width ?? 0, height: pixelRect?.height ?? 0 }} aria-hidden="true">
+          {Array.from({ length: 144 }, (_, i) => (
+            <span key={i} style={{
+              "--pixel-delay": `${((i * 37) % 144) * 1.2}ms`,
+            } as React.CSSProperties} />
+          ))}
+        </div>
+      )}
       <header className="estimate-header">
         <a href="/" className="estimate-brand">
           <span className="estimate-brand-mark">S</span> STRUCTURA
@@ -109,11 +149,11 @@ export default function EstimatePage() {
 
         {step === 1 && (
           <form
-            className="estimate-form estimate-step-card estimate-card-enter"
+            className="estimate-form" ref={cardRef}
             onSubmit={(event) => {
               event.preventDefault();
               setError("");
-              setStep(2);
+              transitionTo(2);
             }}
           >
             <div className="estimate-section-heading">
@@ -176,7 +216,7 @@ export default function EstimatePage() {
 
         {step === 2 && (
           <form
-            className="estimate-form estimate-step-card estimate-card-enter"
+            className="estimate-form" ref={cardRef}
             onSubmit={(event) => {
               event.preventDefault();
               handleCalculate();
@@ -238,7 +278,7 @@ export default function EstimatePage() {
               <button
                 className="estimate-back-button"
                 type="button"
-                onClick={() => setStep(1)}
+                onClick={() => transitionTo(1)}
               >
                 ← Back
               </button>

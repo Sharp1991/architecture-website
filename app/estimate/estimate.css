@@ -7,7 +7,7 @@
   --estimate-border: rgba(255,255,255,.10);
   --estimate-text: #fff;
   --estimate-muted: #a0b2c0;
-  --estimate-accent: #d6c5a9;
+  --estimate-accent: #ffffff;
   min-height: 100vh;
   padding: 0 5%;
   background: radial-gradient(circle at 50% 0%, #3c596e 0%, #1e2c37 60%, #111920 100%);
@@ -286,8 +286,8 @@
 
 .estimate-finish-option.selected {
   border-color: var(--estimate-accent);
-  background: rgba(214,197,169,.08);
-  box-shadow: 0 0 15px rgba(214,197,169,.05);
+  background: rgba(255,255,255,.08);
+  box-shadow: 0 0 15px rgba(255,255,255,.05);
 }
 
 .estimate-finish-option input {
@@ -357,7 +357,7 @@
 }
 
 .estimate-button:hover {
-  background: #e8d8be;
+  background: #ffffff;
   transform: translateY(-1px);
   box-shadow: 0 6px 20px rgba(0,0,0,.3);
 }
@@ -943,7 +943,7 @@
 
 .estimate-finish-option.selected {
   border-color: var(--estimate-accent);
-  background: rgba(214, 197, 169, .075);
+  background: rgba(255, 255, 255, .075);
 }
 
 .estimate-finish-check {
@@ -1041,7 +1041,7 @@
 
 .estimate-rocket-orbit {
   position: absolute;
-  border: 1px solid rgba(214, 197, 169, .22);
+  border: 1px solid rgba(255, 255, 255, .22);
   border-radius: 50%;
 }
 
@@ -1229,4 +1229,46 @@
   .estimate-loading-track span {
     animation: none !important;
   }
+}
+
+
+/* Pixel transition between estimate steps */
+.estimate-pixel-overlay {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 0;
+  height: 0;
+  border-radius: 24px;
+  overflow: hidden;
+  z-index: 9999;
+  pointer-events: none;
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  grid-template-rows: repeat(12, 1fr);
+  gap: 2px;
+}
+.estimate-pixel-overlay span {
+  background: #ffffff;
+  opacity: 0;
+  transform: scale(.1);
+  animation-delay: var(--pixel-delay);
+  animation-duration: 650ms;
+  animation-fill-mode: both;
+}
+.estimate-pixel-overlay.is-cover span {
+  animation-name: estimate-pixel-in;
+}
+.estimate-pixel-overlay.is-reveal span {
+  animation-name: estimate-pixel-out;
+}
+@keyframes estimate-pixel-in {
+  to { opacity: .94; transform: scale(1); }
+}
+@keyframes estimate-pixel-out {
+  from { opacity: .94; transform: scale(1); }
+  to { opacity: 0; transform: scale(.1) rotate(12deg); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .estimate-pixel-overlay { display: none; }
 }
