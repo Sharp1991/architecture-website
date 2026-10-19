@@ -54,8 +54,8 @@ export default function EstimatePage() {
             </header>
 
       <section className="estimate-intro">
-        <p className="estimate-eyebrow">PLAN YOUR HOME</p>
-        <h1>Construction cost estimator</h1>
+        <p className="estimate-eyebrow estimate-blur-reveal">PLAN YOUR HOME</p>
+        <h1 className="estimate-blur-reveal estimate-blur-reveal-delay">Construction cost estimator</h1>
         <p>
           Explore a preliminary construction budget based on your building size
           and preferred finish. Adjust the details below to get an itemised estimate.
