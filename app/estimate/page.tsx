@@ -1,6 +1,7 @@
 "use client";
 
 import "./estimate.css";
+import ArchitectureNav from "../components/ArchitectureNav";
 
 import { useState } from "react";
 import { calculateEstimate } from "../lib/estimate-engine";
@@ -47,7 +48,10 @@ export default function EstimatePage() {
         <a href="/" className="estimate-brand">
           <span className="estimate-brand-mark">S</span> STRUCTURA
         </a>
-        <a href="/" className="estimate-back">← Back to home</a>
+        <nav className="estimate-nav" aria-label="Main navigation">
+          <ArchitectureNav />
+        </nav>
+        <a href="/#contact" className="estimate-back">← Home</a>
       </header>
 
       <section className="estimate-intro">
