@@ -1,0 +1,335 @@
+{
+  "metadata": {
+    "title": "Meghalaya Residential Construction Estimator",
+    "location": "Shillong, Meghalaya, India",
+    "currency": "INR",
+    "status": "development_testing",
+    "verified": false,
+    "lastUpdated": "2026-10-19",
+    "pricingMethod": "itemized_quantity_based",
+    "description": "Development catalogue for testing quantity-based residential construction estimates. All rates are provisional and require local verification."
+  },
+  "defaults": {
+    "floorHeightFt": 10,
+    "buildingShape": "approximately_rectangular",
+    "wallQuantityMethod": "provisional_area_allowance",
+    "foundationMethod": "provisional_allowance_pending_soil_and_structural_design",
+    "structuralMethod": "provisional_allowance_pending_engineering_drawings",
+    "labourIncluded": true,
+    "materialsIncluded": true
+  },
+  "finishLevels": [
+    {
+      "id": "basic",
+      "name": "Basic",
+      "description": "Economical materials and essential fittings."
+    },
+    {
+      "id": "standard",
+      "name": "Standard",
+      "description": "Practical everyday materials and fittings."
+    },
+    {
+      "id": "premium",
+      "name": "Premium",
+      "description": "Higher-grade materials and fittings."
+    },
+    {
+      "id": "luxury",
+      "name": "Luxury",
+      "description": "High-end finishes and fittings."
+    }
+  ],
+  "rateCatalogue": [
+    {
+      "id": "site_clearing",
+      "categoryId": "site",
+      "name": "Site clearing",
+      "unit": "sq_ft",
+      "quantityFormula": "plotArea",
+      "materialRate": 0,
+      "labourRate": 10,
+      "finishSensitive": false,
+      "verified": false,
+      "sourceType": "development_assumption"
+    },
+    {
+      "id": "excavation",
+      "categoryId": "site",
+      "name": "Excavation allowance",
+      "unit": "cu_ft",
+      "quantityFormula": "footprintTimes0_8",
+      "materialRate": 0,
+      "labourRate": 35,
+      "finishSensitive": false,
+      "verified": false,
+      "sourceType": "development_assumption"
+    },
+    {
+      "id": "earth_filling",
+      "categoryId": "site",
+      "name": "Filling and compaction allowance",
+      "unit": "cu_ft",
+      "quantityFormula": "footprintTimes0_25",
+      "materialRate": 12,
+      "labourRate": 8,
+      "finishSensitive": false,
+      "verified": false,
+      "sourceType": "development_assumption"
+    },
+    {
+      "id": "foundation_work",
+      "categoryId": "foundation",
+      "name": "Foundation and plinth allowance",
+      "unit": "sq_ft",
+      "quantityFormula": "footprint",
+      "materialRate": 260,
+      "labourRate": 100,
+      "finishSensitive": false,
+      "verified": false,
+      "sourceType": "development_assumption"
+    },
+    {
+      "id": "rcc_concrete",
+      "categoryId": "structure",
+      "name": "RCC concrete allowance",
+      "unit": "cu_ft",
+      "quantityFormula": "builtUpTimes0_35",
+      "materialRate": 300,
+      "labourRate": 100,
+      "finishSensitive": false,
+      "verified": false,
+      "sourceType": "development_assumption"
+    },
+    {
+      "id": "reinforcement_steel",
+      "categoryId": "structure",
+      "name": "Reinforcement steel allowance",
+      "unit": "kg",
+      "quantityFormula": "builtUpTimes3_5",
+      "materialRate": 68,
+      "labourRate": 12,
+      "finishSensitive": false,
+      "verified": false,
+      "sourceType": "development_assumption"
+    },
+    {
+      "id": "formwork",
+      "categoryId": "structure",
+      "name": "RCC formwork and shuttering allowance",
+      "unit": "sq_ft",
+      "quantityFormula": "builtUpTimes1_5",
+      "materialRate": 25,
+      "labourRate": 20,
+      "finishSensitive": false,
+      "verified": false,
+      "sourceType": "development_assumption"
+    },
+    {
+      "id": "masonry",
+      "categoryId": "walls",
+      "name": "Masonry wall allowance",
+      "unit": "sq_ft",
+      "quantityFormula": "wallArea",
+      "materialRate": 95,
+      "labourRate": 45,
+      "finishSensitive": false,
+      "verified": false,
+      "sourceType": "development_assumption"
+    },
+    {
+      "id": "plastering",
+      "categoryId": "walls",
+      "name": "Internal and external plastering",
+      "unit": "sq_ft",
+      "quantityFormula": "wallAreaTimes2",
+      "materialRate": 12,
+      "labourRate": 13,
+      "finishSensitive": false,
+      "verified": false,
+      "sourceType": "development_assumption"
+    },
+    {
+      "id": "roof_waterproofing",
+      "categoryId": "roof",
+      "name": "Roof waterproofing allowance",
+      "unit": "sq_ft",
+      "quantityFormula": "footprint",
+      "materialRate": 25,
+      "labourRate": 15,
+      "finishSensitive": false,
+      "verified": false,
+      "sourceType": "development_assumption"
+    },
+    {
+      "id": "rainwater_system",
+      "categoryId": "roof",
+      "name": "Roof rainwater system allowance",
+      "unit": "sq_ft",
+      "quantityFormula": "footprint",
+      "materialRate": 8,
+      "labourRate": 4,
+      "finishSensitive": false,
+      "verified": false,
+      "sourceType": "development_assumption"
+    },
+    {
+      "id": "doors_windows",
+      "categoryId": "doors",
+      "name": "Doors and windows allowance",
+      "unit": "sq_ft",
+      "quantityFormula": "builtUp",
+      "materialRates": {
+        "basic": 85,
+        "standard": 125,
+        "premium": 200,
+        "luxury": 320
+      },
+      "labourRate": 20,
+      "finishSensitive": true,
+      "verified": false,
+      "sourceType": "development_assumption"
+    },
+    {
+      "id": "electrical",
+      "categoryId": "electrical",
+      "name": "Electrical installation allowance",
+      "unit": "sq_ft",
+      "quantityFormula": "builtUp",
+      "materialRates": {
+        "basic": 45,
+        "standard": 60,
+        "premium": 85,
+        "luxury": 125
+      },
+      "labourRate": 20,
+      "finishSensitive": true,
+      "verified": false,
+      "sourceType": "development_assumption"
+    },
+    {
+      "id": "plumbing",
+      "categoryId": "plumbing",
+      "name": "Water supply and drainage allowance",
+      "unit": "sq_ft",
+      "quantityFormula": "builtUp",
+      "materialRates": {
+        "basic": 45,
+        "standard": 65,
+        "premium": 95,
+        "luxury": 145
+      },
+      "labourRate": 20,
+      "finishSensitive": true,
+      "verified": false,
+      "sourceType": "development_assumption"
+    },
+    {
+      "id": "flooring",
+      "categoryId": "finishes",
+      "name": "Flooring and skirting allowance",
+      "unit": "sq_ft",
+      "quantityFormula": "builtUp",
+      "materialRates": {
+        "basic": 45,
+        "standard": 75,
+        "premium": 140,
+        "luxury": 260
+      },
+      "labourRate": 25,
+      "finishSensitive": true,
+      "verified": false,
+      "sourceType": "development_assumption"
+    },
+    {
+      "id": "painting",
+      "categoryId": "painting",
+      "name": "Painting and surface finishing",
+      "unit": "sq_ft",
+      "quantityFormula": "wallAreaTimes2",
+      "materialRates": {
+        "basic": 8,
+        "standard": 12,
+        "premium": 20,
+        "luxury": 32
+      },
+      "labourRate": 10,
+      "finishSensitive": true,
+      "verified": false,
+      "sourceType": "development_assumption"
+    },
+    {
+      "id": "kitchen_bathroom",
+      "categoryId": "fittings",
+      "name": "Kitchen and bathroom fixed fittings allowance",
+      "unit": "sq_ft",
+      "quantityFormula": "builtUp",
+      "materialRates": {
+        "basic": 35,
+        "standard": 60,
+        "premium": 110,
+        "luxury": 200
+      },
+      "labourRate": 15,
+      "finishSensitive": true,
+      "verified": false,
+      "sourceType": "development_assumption"
+    },
+    {
+      "id": "external_services",
+      "categoryId": "external",
+      "name": "External services provisional allowance",
+      "unit": "sq_ft",
+      "quantityFormula": "plotArea",
+      "materialRate": 10,
+      "labourRate": 5,
+      "finishSensitive": false,
+      "verified": false,
+      "sourceType": "development_assumption"
+    },
+    {
+      "id": "professional_fees",
+      "categoryId": "fees",
+      "name": "Professional fees and approvals allowance",
+      "unit": "sq_ft",
+      "quantityFormula": "builtUp",
+      "materialRate": 0,
+      "labourRate": 0,
+      "fixedAllowanceRate": 50,
+      "finishSensitive": false,
+      "verified": false,
+      "sourceType": "development_assumption"
+    }
+  ],
+  "categories": [
+    {"id":"site","name":"Site preparation and earthwork"},
+    {"id":"foundation","name":"Foundation and plinth"},
+    {"id":"structure","name":"RCC structural work"},
+    {"id":"walls","name":"Walls and plastering"},
+    {"id":"roof","name":"Roofing and waterproofing"},
+    {"id":"doors","name":"Doors and windows"},
+    {"id":"electrical","name":"Electrical work"},
+    {"id":"plumbing","name":"Plumbing and sanitation"},
+    {"id":"finishes","name":"Flooring and wall finishes"},
+    {"id":"painting","name":"Painting and finishing"},
+    {"id":"fittings","name":"Kitchen, bathroom and fixed fittings"},
+    {"id":"external","name":"External development and services"},
+    {"id":"fees","name":"Professional fees and approvals"},
+    {"id":"contingency","name":"Contingency and price allowance"}
+  ],
+  "contingency": {
+    "percentage": 10,
+    "verified": false,
+    "sourceType": "development_assumption",
+    "description": "Provisional reserve applied transparently to the calculated construction subtotal."
+  },
+  "exclusions": [
+    "Land purchase",
+    "Furniture and movable appliances",
+    "Major retaining walls and slope stabilization",
+    "Unusual soil conditions and specialist foundations",
+    "Taxes and statutory charges not explicitly included",
+    "Any work not listed in the selected estimate scope"
+  ],
+  "disclaimer": "Development estimate only. All rates and quantity factors are unverified assumptions, not current local quotations, an engineering bill of quantities, or a contractor offer. Foundation and structural quantities require professional review."
+}
