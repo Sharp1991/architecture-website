@@ -11,7 +11,7 @@ export default function ArchitectureNav() {
       items={[
         { label: "Home", href: "/#home" },
         { label: "Work", href: "/#projects" },
-        { label: "About", href: "/#about" },
+        { label: "About", href: "/about" },
         { label: "Contact", href: "/#contact" },
       ]}
       initialActiveIndex={0}
