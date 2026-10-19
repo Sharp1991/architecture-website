@@ -687,19 +687,51 @@
 }
 
 @media (max-width: 768px) {
-  .estimate-nav {
-    display: none;
+  .estimate-header {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    min-height: auto;
+    gap: 14px 10px;
+    padding: 16px 0;
   }
 
-  .estimate-header {
-    min-height: 70px;
+  .estimate-brand {
+    grid-column: 1;
+    grid-row: 1;
+    gap: 6px;
+    font-size: .72rem;
+    letter-spacing: 1px;
+  }
+
+  .estimate-brand-mark {
+    width: 24px;
+    height: 24px;
+    font-size: 1rem;
+  }
+
+  .estimate-back {
+    grid-column: 2;
+    grid-row: 1;
+    gap: 4px;
+    font-size: .72rem;
+    white-space: nowrap;
+  }
+
+  .estimate-nav {
+    display: flex;
+    grid-column: 1 / -1;
+    grid-row: 2;
+    width: 100%;
+    min-width: 0;
+    justify-content: center;
+    overflow: visible;
+    transform: none;
   }
 
   .estimate-intro {
-    padding-top: 48px;
+    padding-top: 40px;
   }
 }
-
 @media (max-width: 500px) {
   .estimate-page {
     padding-right: 5%;
