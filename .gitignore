@@ -35,3 +35,5 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+# Old pnpm dependencies kept locally
+/node_modules-pnpm/

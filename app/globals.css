@@ -156,3 +156,649 @@ table {
 .title {
   text-wrap: balance;
 }
+
+/* Architecture Studio homepage */
+html,
+body {
+  min-height: 100%;
+  margin: 0;
+}
+
+body {
+  background: #111;
+  color: #fff;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.architecture-hero {
+  position: relative;
+  isolation: isolate;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 100svh;
+  overflow: hidden;
+  padding: 30px clamp(22px, 6vw, 88px);
+  box-sizing: border-box;
+  background-image: url("/photos/photo1.jpg");
+  background-size: cover;
+  background-position: center;
+}
+
+.architecture-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(
+    90deg,
+    rgba(10, 12, 13, 0.82) 0%,
+    rgba(10, 12, 13, 0.48) 55%,
+    rgba(10, 12, 13, 0.2) 100%
+  );
+}
+
+.architecture-header,
+.architecture-nav,
+.architecture-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.architecture-brand {
+  color: #fff;
+  text-decoration: none;
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+}
+
+.architecture-nav {
+  gap: clamp(16px, 3vw, 36px);
+}
+
+.architecture-nav a,
+.architecture-bottom a {
+  color: #fff;
+  text-decoration: none;
+  font-size: 0.85rem;
+  transition: opacity 200ms ease;
+}
+
+.architecture-nav a:hover,
+.architecture-bottom a:hover {
+  opacity: 0.7;
+}
+
+.architecture-content {
+  width: 100%;
+  max-width: 760px;
+  padding: 72px 0;
+  animation: architecture-fade-in 1.1s ease-out both;
+}
+
+.architecture-eyebrow {
+  margin: 0 0 24px;
+  font-size: 0.72rem;
+  letter-spacing: 0.22em;
+  color: #e3ded4;
+  animation: architecture-fade-in 0.8s 0.1s ease-out both;
+}
+
+.architecture-content h1 {
+  margin: 0;
+  font-size: clamp(3.2rem, 8.5vw, 7rem);
+  line-height: 0.98;
+  letter-spacing: -0.065em;
+  font-weight: 500;
+  animation: architecture-fade-in 1s 0.2s ease-out both;
+}
+
+.architecture-description {
+  max-width: 440px;
+  margin: 28px 0 32px;
+  color: rgba(255, 255, 255, 0.84);
+  font-size: clamp(1rem, 1.5vw, 1.15rem);
+  line-height: 1.8;
+  animation: architecture-fade-in 1s 0.4s ease-out both;
+}
+
+.architecture-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 28px;
+  padding: 15px 20px;
+  border: 1px solid rgba(255, 255, 255, 0.75);
+  color: #fff;
+  text-decoration: none;
+  font-size: 0.9rem;
+  transition: background 200ms ease, color 200ms ease;
+  animation: architecture-fade-in 1s 0.55s ease-out both;
+}
+
+.architecture-cta:hover {
+  background: #fff;
+  color: #111;
+}
+
+.architecture-bottom {
+  padding-bottom: 8px;
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 0.8rem;
+}
+
+.architecture-anchor {
+  position: absolute;
+  bottom: 0;
+}
+
+@keyframes architecture-fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .architecture-content,
+  .architecture-eyebrow,
+  .architecture-content h1,
+  .architecture-description,
+  .architecture-cta {
+    animation: none;
+  }
+}
+
+@media (max-width: 520px) {
+  .architecture-hero {
+    padding: 24px 22px;
+  }
+
+  .architecture-header {
+    align-items: flex-start;
+  }
+
+  .architecture-header,
+  .architecture-nav {
+    gap: 16px;
+  }
+
+  .architecture-brand {
+    max-width: 130px;
+    line-height: 1.5;
+  }
+
+  .architecture-nav a {
+    font-size: 0.75rem;
+  }
+
+  .architecture-content {
+    padding: 60px 0;
+  }
+
+  .architecture-bottom {
+    align-items: flex-end;
+    font-size: 0.7rem;
+  }
+}
+
+/* Architecture studio homepage */
+.architecture-site {
+  --architecture-white: #f7f6f2;
+  background: #f7f6f2;
+  color: #22231f;
+}
+
+.architecture-hero {
+  position: relative;
+  isolation: isolate;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 100svh;
+  overflow: hidden;
+  padding: 30px clamp(22px, 6vw, 92px) 26px;
+  color: var(--architecture-white);
+  background-color: #333832;
+  background-image: url("/photos/photo1.jpg");
+  background-size: cover;
+  background-position: center;
+}
+
+.architecture-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background:
+    linear-gradient(
+      90deg,
+      rgba(12, 17, 14, 0.82) 0%,
+      rgba(12, 17, 14, 0.58) 48%,
+      rgba(12, 17, 14, 0.18) 100%
+    ),
+    linear-gradient(
+      0deg,
+      rgba(10, 14, 12, 0.48) 0%,
+      transparent 30%,
+      rgba(10, 14, 12, 0.18) 100%
+    );
+}
+
+.architecture-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 28px;
+  width: 100%;
+  animation: architecture-fade-in 0.9s ease both;
+}
+
+.architecture-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 11px;
+  color: inherit;
+  text-decoration: none;
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 0.19em;
+  white-space: nowrap;
+}
+
+.brand-mark {
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  font-family: Georgia, serif;
+  font-size: 23px;
+  font-weight: 400;
+  letter-spacing: 0;
+}
+
+.architecture-nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(18px, 3vw, 44px);
+}
+
+.architecture-nav a,
+.header-contact {
+  color: inherit;
+  text-decoration: none;
+  font-size: 12px;
+  transition: opacity 0.25s ease;
+}
+
+.architecture-nav a:hover,
+.header-contact:hover,
+.architecture-bottom a:hover {
+  opacity: 0.65;
+}
+
+.header-contact {
+  display: inline-flex;
+  align-items: center;
+  gap: 13px;
+  padding: 13px 17px;
+  border: 1px solid rgba(255, 255, 255, 0.55);
+  white-space: nowrap;
+}
+
+.architecture-content {
+  width: min(850px, 100%);
+  padding-top: 70px;
+  padding-bottom: 70px;
+  animation: architecture-fade-in 1.1s 0.15s ease both;
+}
+
+.architecture-eyebrow,
+.architecture-next > p {
+  margin: 0 0 28px;
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.24em;
+}
+
+.architecture-content h1 {
+  max-width: 850px;
+  margin: 0;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(40px, 6.1vw, 82px);
+  font-weight: 400;
+  line-height: 1.08;
+  letter-spacing: -0.045em;
+  text-wrap: balance;
+}
+
+.architecture-description {
+  max-width: 465px;
+  margin: 25px 0 30px;
+  color: rgba(255, 255, 255, 0.83);
+  font-size: 14px;
+  line-height: 1.9;
+}
+
+.architecture-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 28px;
+  min-height: 48px;
+  padding: 0 19px;
+  background: var(--architecture-white);
+  color: #22231f;
+  text-decoration: none;
+  font-size: 12px;
+  transition: background 0.25s ease, color 0.25s ease;
+}
+
+.architecture-cta:hover {
+  background: #d9d8cf;
+}
+
+.architecture-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding-top: 20px;
+  border-top: 1px solid rgba(255, 255, 255, 0.34);
+  color: rgba(255, 255, 255, 0.82);
+  font-size: 10px;
+  letter-spacing: 0.06em;
+  animation: architecture-fade-in 1s 0.4s ease both;
+}
+
+.architecture-bottom a {
+  display: inline-flex;
+  align-items: center;
+  gap: 15px;
+  color: inherit;
+  text-decoration: none;
+  transition: opacity 0.25s ease;
+}
+
+.architecture-next {
+  min-height: 300px;
+  padding: 90px clamp(22px, 10vw, 150px);
+  background: #f7f6f2;
+}
+
+.architecture-next > p {
+  color: #73766d;
+}
+
+.architecture-next h2 {
+  max-width: 700px;
+  margin: 0;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(32px, 5vw, 58px);
+  font-weight: 400;
+  line-height: 1.15;
+  letter-spacing: -0.035em;
+}
+
+.architecture-next > span {
+  display: block;
+  scroll-margin-top: 24px;
+}
+
+@keyframes architecture-fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 760px) {
+  .architecture-hero {
+    min-height: 100svh;
+    padding: 22px 22px 20px;
+    background-position: 58% center;
+  }
+
+  .architecture-header {
+    flex-wrap: wrap;
+    gap: 18px;
+  }
+
+  .architecture-brand {
+    font-size: 12px;
+    letter-spacing: 0.14em;
+  }
+
+  .brand-mark {
+    width: 30px;
+    height: 30px;
+    font-size: 20px;
+  }
+
+  .architecture-nav {
+    order: 3;
+    justify-content: flex-start;
+    gap: 19px;
+    width: 100%;
+    overflow-x: auto;
+    padding: 8px 0;
+  }
+
+  .architecture-nav a {
+    font-size: 11px;
+    white-space: nowrap;
+  }
+
+  .header-contact {
+    gap: 8px;
+    padding: 10px 11px;
+    font-size: 11px;
+  }
+
+  .architecture-content {
+    padding-top: 65px;
+    padding-bottom: 65px;
+  }
+
+  .architecture-eyebrow {
+    margin-bottom: 21px;
+    font-size: 9px;
+  }
+
+  .architecture-content h1 {
+    font-size: clamp(40px, 10.5vw, 61px);
+    line-height: 1.08;
+  }
+
+  .desktop-break {
+    display: none;
+  }
+
+  .architecture-description {
+    max-width: 390px;
+    margin-top: 22px;
+    font-size: 13px;
+    line-height: 1.8;
+  }
+
+  .architecture-bottom {
+    align-items: flex-start;
+    font-size: 9px;
+  }
+
+  .architecture-bottom span {
+    max-width: 145px;
+    line-height: 1.7;
+  }
+
+  .architecture-bottom a {
+    gap: 8px;
+    white-space: nowrap;
+  }
+
+  .architecture-next {
+    padding: 65px 24px;
+  }
+}
+
+@media (max-width: 380px) {
+  .architecture-header {
+    gap: 12px;
+  }
+
+  .architecture-brand {
+    gap: 7px;
+    font-size: 10px;
+  }
+
+  .header-contact {
+    padding: 9px;
+    font-size: 10px;
+  }
+
+  .architecture-content h1 {
+    font-size: 38px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .architecture-header,
+  .architecture-content,
+  .architecture-bottom {
+    animation: none;
+  }
+
+  .architecture-nav a,
+  .header-contact,
+  .architecture-bottom a,
+  .architecture-cta {
+    transition: none;
+  }
+}
+
+/* Slower, line-by-line entrance */
+.architecture-content {
+  animation: none;
+}
+
+.architecture-eyebrow {
+  animation: architecture-fade-in 1.2s ease both;
+}
+
+.architecture-content h1 {
+  animation: architecture-fade-in 1.6s 0.6s ease both;
+}
+
+.architecture-description {
+  animation: architecture-fade-in 1.4s 1.4s ease both;
+}
+
+.architecture-cta {
+  animation: architecture-fade-in 1.2s 2s ease both;
+}
+
+/* Remove the white section beneath the opening screen */
+.architecture-next {
+  display: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .architecture-eyebrow,
+  .architecture-content h1,
+  .architecture-description,
+  .architecture-cta {
+    animation: none;
+  }
+}
+
+/* Headline: slow, line-by-line reveal */
+.architecture-content h1 {
+  animation: none;
+}
+
+.headline-line {
+  display: block;
+  opacity: 0;
+  animation: architecture-line-reveal 1.8s ease forwards;
+}
+
+.headline-line-one {
+  animation-delay: 0.6s;
+}
+
+.headline-line-two {
+  animation-delay: 1.8s;
+}
+
+@keyframes architecture-line-reveal {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+    filter: blur(4px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
+}
+
+@media (max-width: 760px) {
+  .headline-line {
+    display: inline;
+  }
+
+  .headline-line + .headline-line::before {
+    content: " ";
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .headline-line {
+    opacity: 1;
+    animation: none;
+    filter: none;
+    transform: none;
+  }
+}
+
+/* GooeyNav header integration */
+.architecture-nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  min-width: 0;
+}
+
+.architecture-nav .gooey-nav {
+  --gn-font: 12px;
+  --gn-x: 13px;
+  --gn-y: 9px;
+}
+
+@media (max-width: 760px) {
+  .architecture-nav {
+    order: 3;
+    flex: 0 0 100%;
+    justify-content: center;
+    overflow-x: auto;
+  }
+
+  .architecture-nav .gooey-nav {
+    --gn-font: 11px;
+    --gn-x: 11px;
+    --gn-y: 8px;
+  }
+}

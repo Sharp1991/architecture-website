@@ -1,63 +1,66 @@
-import Image from "next/image";
-import { socialLinks } from "./lib/config";
+import ArchitectureNav from "./components/ArchitectureNav";
 
-export default function Page() {
+export default function Home() {
   return (
-    <section>
-      <a href={socialLinks.twitter} target="_blank">
-        <Image
-          src="/profile.png"
-          alt="Profile photo"
-          className="rounded-full bg-gray-100 block lg:mt-5 mt-0 lg:mb-5 mb-10 mx-auto sm:float-right sm:ml-5 sm:mb-5 grayscale hover:grayscale-0"
-          unoptimized
-          width={160}
-          height={160}
-          priority
-        />
-      </a>
-      <h1 className="mb-8 text-2xl font-medium">Portfolio template!</h1>
-      <div className="prose prose-neutral dark:prose-invert">
-        <p>
-          A clean, fast, and lightweight portfolio template built with Next.js,
-          Vercel, and Tailwind CSS.
-        </p>
-        <p>
-          Nextfolio has everything you need for a portfolio: MDX blog, SEO, RSS,
-          Atom & JSON feeds, analytics, Tweet & YouTube embeds, KaTeX and {""}
-          <a
-            target="_blank"
-            href="https://github.com/1msirius/Nextfolio?tab=readme-ov-file#features"
-          >
-            more
+    <main className="architecture-site">
+      <section className="architecture-hero">
+        <div className="architecture-overlay" />
+
+        <header className="architecture-header">
+          <a href="/" className="architecture-brand" aria-label="Structura home">
+            <span className="brand-mark">S</span>
+            <span>STRUCTURA</span>
           </a>
-          .
-        </p>
-        <p>
-          Nextfolio is{" "}
-          <a href={socialLinks.github} target="_blank">
-            open-source
-          </a>{" "}
-          and fully customizable, making it easy to add more features.
-        </p>
-        <p>
-          <a
-            href="https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2F1msirius%2FNextfolio"
-            target="_blank"
-          >
-            Deploy
-          </a>{" "}
-          your Nextfolio site with Vercel in minutes and follow the set up
-          instructions in the{" "}
-          <a href="/blog/getting-started">Getting Started</a> post.
-        </p>
-        <p>
-          Built and maintained by{" "}
-          <a href="https://imsirius.xyz/" target="_blank">
-            Sirius
+
+          <div className="architecture-nav">
+            <ArchitectureNav />
+          </div>
+
+          <a href="#contact" className="header-contact">
+            Get in touch <span aria-hidden="true">↗</span>
           </a>
-          .
-        </p>
-      </div>
-    </section>
+        </header>
+
+        <div className="architecture-content" id="home">
+          <p className="architecture-eyebrow">
+            ARCHITECTURE · DESIGN · LIVING
+          </p>
+
+          <h1>
+            <span className="headline-line headline-line-one">
+              A dream home is no longer an illusion,
+            </span>
+            <span className="headline-line headline-line-two">
+              but a place slowly unfolding into reality.
+            </span>
+          </h1>
+
+          <p className="architecture-description">
+            We create architecture that blends function, emotion, and
+            timeless form. From residential retreats to commercial
+            landmarks, every structure begins with a purpose.
+          </p>
+
+          <a href="#contact" className="architecture-cta">
+            Start a conversation <span aria-hidden="true">↗</span>
+          </a>
+        </div>
+
+        <div className="architecture-bottom">
+          <span>Thoughtfully designed. Carefully built.</span>
+          <a href="#projects">
+            Discover our work <span aria-hidden="true">↓</span>
+          </a>
+        </div>
+      </section>
+
+      <section className="architecture-next" id="projects">
+        <p>OUR APPROACH</p>
+        <h2>Spaces shaped around the way you live.</h2>
+        <span id="process" />
+        <span id="about" />
+        <span id="contact" />
+      </section>
+    </main>
   );
 }
