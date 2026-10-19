@@ -41,8 +41,8 @@ export default function Home() {
             landmarks, every structure begins with a purpose.
           </p>
 
-          <a href="#contact" className="architecture-cta">
-            Start a conversation <span aria-hidden="true">↗</span>
+          <a href="/estimate" className="architecture-cta">
+            Get Your Estimate <span aria-hidden="true">↗</span>
           </a>
         </div>
 
