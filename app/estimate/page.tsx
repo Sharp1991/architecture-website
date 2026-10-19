@@ -2,7 +2,6 @@
 
 import "./estimate.css";
 import ArchitectureNav from "../components/ArchitectureNav";
-
 import { useState } from "react";
 import { calculateEstimate } from "../lib/estimate-engine";
 import type { EstimateResult } from "../lib/estimate-engine";
@@ -16,6 +15,13 @@ const money = (value: number) =>
     maximumFractionDigits: 0,
   }).format(value);
 
+const finishes = [
+  ["basic", "Basic", "Essential materials and fittings"],
+  ["standard", "Standard", "Practical everyday finishes"],
+  ["premium", "Premium", "Higher-grade materials"],
+  ["luxury", "Luxury", "High-end finishes and fittings"],
+] as const;
+
 export default function EstimatePage() {
   const [plotArea, setPlotArea] = useState("2400");
   const [areaPerFloor, setAreaPerFloor] = useState("1200");
@@ -23,23 +29,36 @@ export default function EstimatePage() {
   const [finishLevel, setFinishLevel] = useState<FinishLevel>("standard");
   const [result, setResult] = useState<EstimateResult | null>(null);
   const [error, setError] = useState("");
+  const [step, setStep] = useState(1);
+  const [calculating, setCalculating] = useState(false);
 
   function handleCalculate() {
-    try {
-      const estimate = calculateEstimate({
-        plotArea: Number(plotArea),
-        areaPerFloor: Number(areaPerFloor),
-        floors: Number(floors),
-        finishLevel,
-      });
-      setResult(estimate);
-      setError("");
-    } catch (err) {
-      setResult(null);
-      setError(
-        err instanceof Error ? err.message : "Unable to calculate the estimate."
-      );
-    }
+    setError("");
+    setResult(null);
+    setCalculating(true);
+    setStep(3);
+
+    window.setTimeout(() => {
+      try {
+        const estimate = calculateEstimate({
+          plotArea: Number(plotArea),
+          areaPerFloor: Number(areaPerFloor),
+          floors: Number(floors),
+          finishLevel,
+        });
+        setResult(estimate);
+        setStep(4);
+      } catch (err) {
+        setError(
+          err instanceof Error
+            ? err.message
+            : "Unable to calculate the estimate."
+        );
+        setStep(2);
+      } finally {
+        setCalculating(false);
+      }
+    }, 1100);
   }
 
   return (
@@ -51,227 +70,354 @@ export default function EstimatePage() {
         <nav className="estimate-nav" aria-label="Main navigation">
           <ArchitectureNav />
         </nav>
-            </header>
+      </header>
 
       <section className="estimate-intro">
         <p className="estimate-eyebrow estimate-blur-reveal">PLAN YOUR HOME</p>
-        <h1 className="estimate-blur-reveal estimate-blur-reveal-delay">Construction cost estimator</h1>
+        <h1 className="estimate-blur-reveal estimate-blur-reveal-delay">
+          Construction cost estimator
+        </h1>
         <p>
-          Explore a preliminary construction budget based on your building size
-          and preferred finish. Adjust the details below to get an itemised estimate.
+          Shape your project step by step and explore a preliminary construction
+          budget based on your building size and preferred finish.
         </p>
-        <span className="estimate-location">Estimate basis: Shillong, Meghalaya</span>
+        <span className="estimate-location">
+          Estimate basis: Shillong, Meghalaya
+        </span>
       </section>
 
-      <section className="estimate-layout">
-        <form
-          className="estimate-form"
-          onSubmit={(event) => {
-            event.preventDefault();
-            handleCalculate();
-          }}
-        >
-          <div className="estimate-section-heading">
-            <span>01</span>
-            <div>
-              <h2>Your building</h2>
-              <p>Enter the approximate dimensions.</p>
+      <section className="estimate-layout estimate-step-layout">
+        <div className="estimate-step-indicator" aria-label={`Step ${step} of 4`}>
+          {[1, 2, 3, 4].map((number) => (
+            <div
+              key={number}
+              className={`estimate-step-dot ${step >= number ? "active" : ""}`}
+            >
+              <span>{number}</span>
+              <small>
+                {number === 1
+                  ? "Building"
+                  : number === 2
+                    ? "Finish"
+                    : number === 3
+                      ? "Calculate"
+                      : "Summary"}
+              </small>
             </div>
-          </div>
+          ))}
+        </div>
 
-          <label className="estimate-field">
-            Plot area <span>(sq ft)</span>
-            <input
-              type="number"
-              min="1"
-              max="1000000"
-              required
-              value={plotArea}
-              onChange={(event) => setPlotArea(event.target.value)}
-            />
-          </label>
-
-          <label className="estimate-field">
-            Building area per floor <span>(sq ft)</span>
-            <input
-              type="number"
-              min="1"
-              max="100000"
-              required
-              value={areaPerFloor}
-              onChange={(event) => setAreaPerFloor(event.target.value)}
-            />
-            <small>The covered building footprint on each floor.</small>
-          </label>
-
-          <label className="estimate-field">
-            Number of floors
-            <select value={floors} onChange={(event) => setFloors(event.target.value)}>
-              {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((floor) => (
-                <option key={floor} value={floor}>
-                  {floor} {floor === 1 ? "floor" : "floors"}
-                </option>
-              ))}
-            </select>
-          </label>
-
-          <div className="estimate-section-heading estimate-finish-heading">
-            <span>02</span>
-            <div>
-              <h2>Choose your finish</h2>
-              <p>Your selection adjusts applicable finish allowances.</p>
+        {step === 1 && (
+          <form
+            className="estimate-form estimate-step-card estimate-card-enter"
+            onSubmit={(event) => {
+              event.preventDefault();
+              setError("");
+              setStep(2);
+            }}
+          >
+            <div className="estimate-section-heading">
+              <span>01</span>
+              <div>
+                <h2>Your building</h2>
+                <p>Start with the approximate dimensions of your home.</p>
+              </div>
             </div>
-          </div>
 
-          <div className="estimate-finish-options">
-            {([
-              ["basic", "Basic", "Essential materials and fittings"],
-              ["standard", "Standard", "Practical everyday finishes"],
-              ["premium", "Premium", "Higher-grade materials"],
-              ["luxury", "Luxury", "High-end finishes and fittings"],
-            ] as const).map(([id, name, description]) => (
-              <label
-                key={id}
-                className={`estimate-finish-option ${finishLevel === id ? "selected" : ""}`}
+            <label className="estimate-field">
+              Plot area <span>(sq ft)</span>
+              <input
+                type="number"
+                min="1"
+                max="1000000"
+                required
+                value={plotArea}
+                onChange={(event) => setPlotArea(event.target.value)}
+              />
+            </label>
+
+            <label className="estimate-field">
+              Building area per floor <span>(sq ft)</span>
+              <input
+                type="number"
+                min="1"
+                max="100000"
+                required
+                value={areaPerFloor}
+                onChange={(event) => setAreaPerFloor(event.target.value)}
+              />
+              <small>The covered building footprint on each floor.</small>
+            </label>
+
+            <label className="estimate-field">
+              Number of floors
+              <select
+                value={floors}
+                onChange={(event) => setFloors(event.target.value)}
               >
-                <input
-                  type="radio"
-                  name="finishLevel"
-                  value={id}
-                  checked={finishLevel === id}
-                  onChange={() => setFinishLevel(id)}
-                />
-                <span className="estimate-radio" />
-                <span>
-                  <strong>{name}</strong>
-                  <small>{description}</small>
-                </span>
-              </label>
-            ))}
-          </div>
-
-          <button className="estimate-button" type="submit">
-            Calculate estimate <span aria-hidden="true">↗</span>
-          </button>
-
-          {error && <p className="estimate-error" role="alert">{error}</p>}
-        </form>
-
-        <section className="estimate-results" aria-live="polite">
-          <p className="estimate-eyebrow">YOUR PROJECT SUMMARY</p>
-          {result ? (
-            <>
-              <p className="estimate-result-label">Preliminary estimated total</p>
-              <h2 className="estimate-total">{money(result.totalCost)}</h2>
-              <p className="estimate-result-note">
-                Including {result.contingencyPercentage}% contingency allowance
-              </p>
-
-              <div className="estimate-metrics">
-                <div>
-                  <span>Total built-up area</span>
-                  <strong>{result.totalBuiltUpArea.toLocaleString("en-IN")} sq ft</strong>
-                </div>
-                <div>
-                  <span>Selected finish</span>
-                  <strong>{result.finishName}</strong>
-                </div>
-                <div>
-                  <span>Construction subtotal</span>
-                  <strong>{money(result.subtotal)}</strong>
-                </div>
-                <div>
-                  <span>Contingency allowance</span>
-                  <strong>{money(result.contingencyAmount)}</strong>
-                </div>
-              </div>
-
-              <div className="estimate-category-heading">
-                <h3>Cost breakdown</h3>
-                <span>14 categories</span>
-              </div>
-              <div className="estimate-category-list">
-                {result.categories.map((category) => (
-                  <details className="estimate-category" key={category.id}>
-                    <summary>
-                      <span>{category.name}</span>
-                      <strong>{money(category.totalCost)}</strong>
-                    </summary>
-                    {category.items.length > 0 ? (
-                      <div className="estimate-line-items">
-                        {category.items.map((item) => (
-                          <div className="estimate-line-item" key={item.id}>
-                            <span>
-                              {item.name}
-                              <small>
-                                {item.quantity.toLocaleString("en-IN")} {item.unit}
-                              </small>
-                            </span>
-                            <strong>{money(item.totalCost)}</strong>
-                          </div>
-                        ))}
-                      </div>
-                    ) : (
-                      <p className="estimate-no-items">
-                        This category is shown as a separate allowance.
-                      </p>
-                    )}
-                  </details>
+                {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((floor) => (
+                  <option key={floor} value={floor}>
+                    {floor} {floor === 1 ? "floor" : "floors"}
+                  </option>
                 ))}
-              </div>
+              </select>
+            </label>
 
-              <div className="estimate-grand-total">
-                <span>Estimated total including contingency</span>
-                <strong>{money(result.totalCost)}</strong>
-              </div>
+            {error && <p className="estimate-error" role="alert">{error}</p>}
 
-              <div className="estimate-assumptions">
-                <h3>Assumptions</h3>
+            <button className="estimate-button" type="submit">
+              Continue <span aria-hidden="true">→</span>
+            </button>
+            <p className="estimate-step-footnote">
+              You can return to this step and adjust your details later.
+            </p>
+          </form>
+        )}
+
+        {step === 2 && (
+          <form
+            className="estimate-form estimate-step-card estimate-card-enter"
+            onSubmit={(event) => {
+              event.preventDefault();
+              handleCalculate();
+            }}
+          >
+            <div className="estimate-section-heading">
+              <span>02</span>
+              <div>
+                <h2>Choose your finish</h2>
+                <p>Your selection adjusts applicable finish allowances.</p>
+              </div>
+            </div>
+
+            <div className="estimate-building-review">
+              <div>
+                <span>Plot area</span>
+                <strong>{Number(plotArea).toLocaleString("en-IN")} sq ft</strong>
+              </div>
+              <div>
+                <span>Built-up area</span>
+                <strong>
+                  {(Number(areaPerFloor) * Number(floors)).toLocaleString("en-IN")} sq ft
+                </strong>
+              </div>
+              <div>
+                <span>Floors</span>
+                <strong>{floors}</strong>
+              </div>
+            </div>
+
+            <div className="estimate-finish-options">
+              {finishes.map(([id, name, description]) => (
+                <label
+                  key={id}
+                  className={`estimate-finish-option ${finishLevel === id ? "selected" : ""}`}
+                >
+                  <input
+                    type="radio"
+                    name="finishLevel"
+                    value={id}
+                    checked={finishLevel === id}
+                    onChange={() => setFinishLevel(id)}
+                  />
+                  <span className="estimate-radio" />
+                  <span>
+                    <strong>{name}</strong>
+                    <small>{description}</small>
+                  </span>
+                  <span className="estimate-finish-check" aria-hidden="true">
+                    {finishLevel === id ? "✓" : ""}
+                  </span>
+                </label>
+              ))}
+            </div>
+
+            {error && <p className="estimate-error" role="alert">{error}</p>}
+
+            <div className="estimate-step-actions">
+              <button
+                className="estimate-back-button"
+                type="button"
+                onClick={() => setStep(1)}
+              >
+                ← Back
+              </button>
+              <button className="estimate-button" type="submit">
+                Calculate estimate <span aria-hidden="true">↗</span>
+              </button>
+            </div>
+          </form>
+        )}
+
+        {step === 3 && (
+          <section
+            className="estimate-form estimate-calculating estimate-card-enter"
+            aria-live="polite"
+          >
+            <div className="estimate-rocket-scene" aria-hidden="true">
+              <span className="estimate-rocket-orbit orbit-one" />
+              <span className="estimate-rocket-orbit orbit-two" />
+              <span className="estimate-rocket">🚀</span>
+              <span className="estimate-rocket-trail" />
+            </div>
+            <p className="estimate-eyebrow">WORKING ON YOUR PROJECT</p>
+            <h2>Putting your estimate together.</h2>
+            <p>
+              Reviewing your building dimensions and selected finish to prepare
+              the cost breakdown.
+            </p>
+            <div className="estimate-loading-track">
+              <span />
+            </div>
+          </section>
+        )}
+
+        {step === 4 && result && (
+          <section
+            className="estimate-results estimate-summary-card estimate-card-enter"
+            aria-live="polite"
+          >
+            <div className="estimate-summary-topline">
+              <p className="estimate-eyebrow">YOUR PROJECT SUMMARY</p>
+              <span className="estimate-summary-status">Estimate ready</span>
+            </div>
+
+            <p className="estimate-result-label">Preliminary estimated total</p>
+            <h2 className="estimate-total">{money(result.totalCost)}</h2>
+            <p className="estimate-result-note">
+              Including {result.contingencyPercentage}% contingency allowance
+            </p>
+
+            <div className="estimate-metrics">
+              <div>
+                <span>Total built-up area</span>
+                <strong>{result.totalBuiltUpArea.toLocaleString("en-IN")} sq ft</strong>
+              </div>
+              <div>
+                <span>Selected finish</span>
+                <strong>{result.finishName}</strong>
+              </div>
+              <div>
+                <span>Construction subtotal</span>
+                <strong>{money(result.subtotal)}</strong>
+              </div>
+              <div>
+                <span>Contingency allowance</span>
+                <strong>{money(result.contingencyAmount)}</strong>
+              </div>
+            </div>
+
+            <div className="estimate-category-heading">
+              <h3>Cost breakdown</h3>
+              <span>14 categories</span>
+            </div>
+
+            <div className="estimate-category-list">
+              {result.categories.map((category) => (
+                <details className="estimate-category" key={category.id}>
+                  <summary>
+                    <span>{category.name}</span>
+                    <strong>{money(category.totalCost)}</strong>
+                  </summary>
+                  {category.items.length > 0 ? (
+                    <div className="estimate-line-items">
+                      {category.items.map((item) => (
+                        <div className="estimate-line-item" key={item.id}>
+                          <span>
+                            {item.name}
+                            <small>
+                              {item.quantity.toLocaleString("en-IN")} {item.unit}
+                            </small>
+                          </span>
+                          <strong>{money(item.totalCost)}</strong>
+                        </div>
+                      ))}
+                    </div>
+                  ) : (
+                    <p className="estimate-no-items">
+                      This category is shown as a separate allowance.
+                    </p>
+                  )}
+                </details>
+              ))}
+            </div>
+
+            <div className="estimate-grand-total">
+              <span>Estimated total including contingency</span>
+              <strong>{money(result.totalCost)}</strong>
+            </div>
+
+            <details className="estimate-extra-details">
+              <summary>Contingency and price allowance</summary>
+              <div>
+                <p>
+                  The total includes a {result.contingencyPercentage}% contingency
+                  allowance of {money(result.contingencyAmount)}. This is a
+                  preliminary provision for cost uncertainty, not a guaranteed
+                  final price.
+                </p>
+              </div>
+            </details>
+
+            <details className="estimate-extra-details">
+              <summary>Assumptions</summary>
+              <div>
                 <ul>
                   {result.assumptions.map((assumption, index) => (
                     <li key={index}>{assumption}</li>
                   ))}
                 </ul>
               </div>
+            </details>
 
-              <div className="estimate-assumptions">
-                <h3>Exclusions</h3>
+            <details className="estimate-extra-details">
+              <summary>Exclusions</summary>
+              <div>
                 <ul>
                   {result.exclusions.map((exclusion) => (
                     <li key={exclusion}>{exclusion}</li>
                   ))}
                 </ul>
               </div>
-            </>
-          ) : (
-            <div className="estimate-empty">
-              <span className="estimate-empty-mark">S</span>
-              <h2>Your estimate starts here.</h2>
-              <p>
-                Review your building details and select Calculate estimate to
-                see the projected budget and itemised cost breakdown.
-              </p>
-              <div className="estimate-empty-detail">
-                <span>Location basis</span><strong>Shillong, Meghalaya</strong>
-              </div>
-              <div className="estimate-empty-detail">
-                <span>Cost categories</span><strong>14 included</strong>
-              </div>
-            </div>
-          )}
+            </details>
 
-          <p className="estimate-disclaimer">
-            Development estimate only. Rates and quantity factors are unverified
-            assumptions, not a contractor quotation or engineering bill of quantities.
-            Actual costs depend on site conditions, drawings, specifications and local
-            quotations. Foundation and structural allowances require professional review.
-          </p>
-        </section>
+            <details className="estimate-extra-details">
+              <summary>About this estimate</summary>
+              <div>
+                <p className="estimate-disclaimer">
+                  Development estimate only. Rates and quantity factors are
+                  unverified assumptions, not a contractor quotation or
+                  engineering bill of quantities. Actual costs depend on site
+                  conditions, drawings, specifications and local quotations.
+                  Foundation and structural allowances require professional
+                  review.
+                </p>
+              </div>
+            </details>
+
+            <div className="estimate-summary-actions">
+              <button
+                className="estimate-back-button"
+                type="button"
+                onClick={() => setStep(1)}
+              >
+                Edit building details
+              </button>
+              <button
+                className="estimate-button"
+                type="button"
+                onClick={() => setStep(2)}
+              >
+                Change finish <span aria-hidden="true">→</span>
+              </button>
+            </div>
+          </section>
+        )}
       </section>
 
       <footer className="estimate-footer">
-        <a href="/">STRUCTURA</a>
-        <span>Thoughtfully designed. Carefully built.</span>
+        <span>STRUCTURA</span>
+        <span>Thoughtful spaces. Considered costs.</span>
       </footer>
     </main>
   );
