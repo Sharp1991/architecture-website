@@ -6,6 +6,7 @@ export default function Home() {
       <section className="architecture-hero">
         <div className="architecture-overlay" />
 
+
         <header className="architecture-header">
           <a href="/" className="architecture-brand" aria-label="Structura home">
             <span className="brand-mark">S</span>

@@ -8,7 +8,7 @@
   --estimate-text: #fff;
   --estimate-muted: #a0b2c0;
   --estimate-accent: #ffffff;
-  min-height: 100vh;
+  min-height: 100svh;
   padding: 0 5%;
   background: radial-gradient(circle at 50% 0%, #3c596e 0%, #1e2c37 60%, #111920 100%);
   background-attachment: fixed;
@@ -759,7 +759,8 @@
     align-items: flex-start;
     flex-direction: column;
     gap: 9px;
-    margin-top: 40px;
+    margin-top: 28px;
+    padding: 24px 0;
   }
 }
 
