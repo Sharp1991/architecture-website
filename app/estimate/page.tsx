@@ -51,8 +51,7 @@ export default function EstimatePage() {
         <nav className="estimate-nav" aria-label="Main navigation">
           <ArchitectureNav />
         </nav>
-        <a href="/#contact" className="estimate-back">← Home</a>
-      </header>
+            </header>
 
       <section className="estimate-intro">
         <p className="estimate-eyebrow">PLAN YOUR HOME</p>
