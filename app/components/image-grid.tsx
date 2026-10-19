@@ -11,7 +11,7 @@ interface ImageGridProps {
 }
 
 export const ImageGrid: React.FC<ImageGridProps> = ({
-  images,
+  images = [],
   columns = 3,
 }) => {
   const gridClass = {
