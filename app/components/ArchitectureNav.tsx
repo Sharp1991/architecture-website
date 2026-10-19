@@ -9,10 +9,10 @@ export default function ArchitectureNav() {
   return (
     <GooeyNav
       items={[
-        { label: "Home", href: "#home" },
-        { label: "Work", href: "#projects" },
-        { label: "About", href: "#about" },
-        { label: "Contact", href: "#contact" },
+        { label: "Home", href: "/#home" },
+        { label: "Work", href: "/#projects" },
+        { label: "About", href: "/#about" },
+        { label: "Contact", href: "/#contact" },
       ]}
       initialActiveIndex={0}
       activeIndex={activeIndex}
