@@ -31,6 +31,7 @@ export default function EstimatePage() {
   const [error, setError] = useState("");
   const [step, setStep] = useState(1);
   const [calculating, setCalculating] = useState(false);
+  const [shareMessage, setShareMessage] = useState("");
 
   const [pixelPhase, setPixelPhase] = useState<"cover" | "reveal" | null>(null);
   const [pixelRect, setPixelRect] = useState<{ left: number; top: number; width: number; height: number } | null>(null);
@@ -61,6 +62,43 @@ export default function EstimatePage() {
       setPixelPhase(null);
       transitionLock.current = false;
     }, 1500);
+  }
+
+  async function handleShareEstimate() {
+    if (!result) return;
+
+    const shareText = [
+      "My Preliminary Construction Estimate",
+      `Estimated total: ${money(result.totalCost)}`,
+      `Built-up area: ${result.totalBuiltUpArea.toLocaleString("en-IN")} sq ft`,
+      `Selected finish: ${result.finishName}`,
+      `Includes ${result.contingencyPercentage}% contingency allowance.`,
+      "",
+      "This is an indicative estimate, not a final contractor quotation.",
+      typeof window !== "undefined" ? window.location.href : "",
+    ].filter(Boolean).join("\\n");
+
+    try {
+      if (typeof navigator.share === "function") {
+        await navigator.share({
+          title: "My Construction Estimate",
+          text: shareText,
+        });
+        setShareMessage("");
+      } else {
+        await navigator.clipboard.writeText(shareText);
+        setShareMessage("Estimate copied. You can now share it.");
+      }
+    } catch (err) {
+      if (err instanceof Error && err.name === "AbortError") return;
+
+      try {
+        await navigator.clipboard.writeText(shareText);
+        setShareMessage("Estimate copied. You can now share it.");
+      } catch {
+        setShareMessage("Sharing is unavailable in this browser.");
+      }
+    }
   }
 
   function handleCalculate() {
@@ -337,15 +375,23 @@ export default function EstimatePage() {
                 <span>Selected finish</span>
                 <strong>{result.finishName}</strong>
               </div>
-              <div>
-                <span>Construction subtotal</span>
-                <strong>{money(result.subtotal)}</strong>
-              </div>
-              <div>
-                <span>Contingency allowance</span>
-                <strong>{money(result.contingencyAmount)}</strong>
-              </div>
             </div>
+
+            <details className="estimate-cost-breakdown">
+              <summary>
+                <span>View detailed cost breakdown</span>
+                <span className="estimate-breakdown-count">14 categories</span>
+              </summary>
+              <div className="estimate-breakdown-totals">
+                <div>
+                  <span>Construction subtotal</span>
+                  <strong>{money(result.subtotal)}</strong>
+                </div>
+                <div>
+                  <span>Contingency allowance</span>
+                  <strong>{money(result.contingencyAmount)}</strong>
+                </div>
+              </div>
 
             <div className="estimate-category-heading">
               <h3>Cost breakdown</h3>
@@ -386,6 +432,8 @@ export default function EstimatePage() {
               <span>Estimated total including contingency</span>
               <strong>{money(result.totalCost)}</strong>
             </div>
+
+            </details>
 
             <details className="estimate-extra-details">
               <summary>Contingency and price allowance</summary>
@@ -446,10 +494,15 @@ export default function EstimatePage() {
               <button
                 className="estimate-button"
                 type="button"
-                onClick={() => setStep(2)}
+                onClick={handleShareEstimate}
               >
-                Change finish <span aria-hidden="true">→</span>
+                Share Estimate <span aria-hidden="true">↗</span>
               </button>
+              {shareMessage && (
+                <p className="estimate-share-message" role="status">
+                  {shareMessage}
+                </p>
+              )}
             </div>
           </section>
         )}
