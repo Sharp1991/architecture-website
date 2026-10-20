@@ -12,11 +12,124 @@
   padding: 0 5%;
   background: radial-gradient(circle at 50% 0%, #3c596e 0%, #1e2c37 60%, #111920 100%);
   background-attachment: fixed;
+  position: relative;
+  isolation: isolate;
   color: var(--estimate-text);
   font-family: 'Inter', sans-serif;
   font-weight: 400;
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
+}
+
+/* Subtle architectural drafting grid, kept behind the estimate UI. */
+.estimate-page::before {
+  content: "";
+  position: absolute;
+  inset: -24px;
+  z-index: -1;
+  pointer-events: none;
+  background-image:
+    radial-gradient(ellipse at 50% 5%, rgba(169, 205, 226, .12), transparent 58%),
+    repeating-linear-gradient(0deg, transparent 0 43px, rgba(205, 226, 239, .045) 43px 44px),
+    repeating-linear-gradient(90deg, transparent 0 43px, rgba(205, 226, 239, .045) 43px 44px),
+    repeating-linear-gradient(0deg, transparent 0 219px, rgba(205, 226, 239, .075) 219px 220px),
+    repeating-linear-gradient(90deg, transparent 0 219px, rgba(205, 226, 239, .075) 219px 220px),
+    radial-gradient(circle, rgba(205, 226, 239, .14) 1px, transparent 1.5px);
+  background-size:
+    100% 100%,
+    44px 44px,
+    44px 44px,
+    220px 220px,
+    220px 220px,
+    220px 220px;
+  background-position: center, 0 0, 0 0, 0 0, 0 0, 0 0;
+  animation: estimateBlueprintDrift 32s ease-in-out infinite alternate;
+}
+
+@keyframes estimateBlueprintDrift {
+  from {
+    transform: translate3d(-5px, -3px, 0);
+  }
+  to {
+    transform: translate3d(5px, 3px, 0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .estimate-page::before {
+    animation: none;
+  }
+}
+
+/* Quiet architectural elevation with a slow traveling highlight. */
+.estimate-building-art {
+  position: absolute;
+  top: 100px;
+  right: -2%;
+  z-index: -1;
+  width: min(68vw, 760px);
+  opacity: .22;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.estimate-building-art svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+
+.estimate-building-lines {
+  stroke: rgba(190, 220, 238, .62);
+  stroke-width: 1;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.estimate-building-highlight {
+  stroke: url(#estimate-building-glow);
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: 90 1450;
+  animation: estimateBuildingSweep 26s linear infinite;
+}
+
+.estimate-drawing-label {
+  display: block;
+  margin-top: 8px;
+  padding-right: 8%;
+  color: rgba(205, 226, 239, .52);
+  font-size: 9px;
+  letter-spacing: 2px;
+  text-align: right;
+}
+
+@keyframes estimateBuildingSweep {
+  from { stroke-dashoffset: 1540; }
+  to { stroke-dashoffset: 0; }
+}
+
+@media (max-width: 700px) {
+  .estimate-building-art {
+    top: 145px;
+    right: -22%;
+    width: 105vw;
+    opacity: .11;
+  }
+
+  .estimate-drawing-label {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .estimate-building-highlight {
+    animation: none;
+    stroke-dasharray: none;
+    opacity: .35;
+  }
 }
 
 .estimate-page *,

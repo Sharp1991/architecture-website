@@ -132,6 +132,39 @@ export default function EstimatePage() {
 
   return (
     <main className="estimate-page">
+      <div className="estimate-building-art" aria-hidden="true">
+        <svg viewBox="0 0 720 520" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="estimate-building-glow" x1="80" y1="420" x2="620" y2="80" gradientUnits="userSpaceOnUse">
+              <stop offset="0" stopColor="#9CCBE3" stopOpacity="0.08" />
+              <stop offset="0.5" stopColor="#D7F0FF" stopOpacity="0.85" />
+              <stop offset="1" stopColor="#9CCBE3" stopOpacity="0.08" />
+            </linearGradient>
+            <mask id="estimate-building-reveal">
+              <rect x="-720" y="0" width="720" height="520" fill="black">
+                <animate attributeName="x" values="-720;720" dur="26s" repeatCount="indefinite" />
+              </rect>
+            </mask>
+          </defs>
+          <g className="estimate-building-lines">
+            <path d="M86 442H650M126 442V226L360 104L594 226V442M126 226H594" />
+            <path d="M170 226V178L360 78L550 178V226" />
+            <path d="M160 250H560V420H160Z" />
+            <path d="M185 272H280V348H185ZM300 272H395V348H300ZM415 272H510V348H415Z" />
+            <path d="M185 365H280V420H185ZM300 365H395V420H300ZM415 365H510V420H415Z" />
+            <path d="M320 420V370H375V420M112 442V456M126 450H594M594 442V456" />
+            <path d="M95 226H112M103 226V442M95 442H112M610 226H627M619 226V442M610 442H627" />
+            <path d="M126 226L360 104L594 226M360 104V78M352 90H368" />
+            <path d="M170 250V420M530 250V420M145 236H575" strokeDasharray="3 8" />
+          </g>
+          <g className="estimate-building-highlight">
+            <path d="M86 442H650L594 226L360 104L126 226V442M170 226V178L360 78L550 178V226M160 250H560V420H160Z" />
+            <path d="M185 272H280V348H185ZM300 272H395V348H300ZM415 272H510V348H415Z" />
+            <path d="M185 365H280V420H185ZM300 365H395V420H300ZM415 365H510V420H415Z" />
+          </g>
+        </svg>
+        <span className="estimate-drawing-label">RESIDENTIAL / ELEVATION 01</span>
+      </div>
       {pixelPhase && (
         <div className={`estimate-pixel-overlay is-${pixelPhase}`} style={{ left: pixelRect?.left ?? 0, top: pixelRect?.top ?? 0, width: pixelRect?.width ?? 0, height: pixelRect?.height ?? 0 }} aria-hidden="true">
           {Array.from({ length: 144 }, (_, i) => (
