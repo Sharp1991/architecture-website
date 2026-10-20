@@ -136,9 +136,9 @@ export default function EstimatePage() {
         <svg viewBox="0 0 720 520" fill="none" xmlns="http://www.w3.org/2000/svg">
           <defs>
             <linearGradient id="estimate-building-glow" x1="80" y1="420" x2="620" y2="80" gradientUnits="userSpaceOnUse">
-              <stop offset="0" stopColor="#9CCBE3" stopOpacity="0.08" />
-              <stop offset="0.5" stopColor="#D7F0FF" stopOpacity="0.85" />
-              <stop offset="1" stopColor="#9CCBE3" stopOpacity="0.08" />
+              <stop offset="0" stopColor="#F0B72F" stopOpacity="0.65" />
+              <stop offset="0.5" stopColor="#FFF4C4" stopOpacity="1" />
+              <stop offset="1" stopColor="#F0B72F" stopOpacity="0.65" />
             </linearGradient>
             <mask id="estimate-building-reveal">
               <rect x="-720" y="0" width="720" height="520" fill="black">

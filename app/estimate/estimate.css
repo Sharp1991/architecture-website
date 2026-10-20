@@ -68,7 +68,7 @@
   right: -2%;
   z-index: -1;
   width: min(68vw, 760px);
-  opacity: .22;
+  opacity: .82;
   pointer-events: none;
   overflow: hidden;
 }
@@ -81,7 +81,7 @@
 }
 
 .estimate-building-lines {
-  stroke: rgba(190, 220, 238, .62);
+  stroke: #F0C66E;
   stroke-width: 1;
   stroke-linecap: round;
   stroke-linejoin: round;
@@ -100,7 +100,7 @@
   display: block;
   margin-top: 8px;
   padding-right: 8%;
-  color: rgba(205, 226, 239, .52);
+  color: #F0C66E;
   font-size: 9px;
   letter-spacing: 2px;
   text-align: right;
@@ -116,7 +116,7 @@
     top: 145px;
     right: -22%;
     width: 105vw;
-    opacity: .11;
+    opacity: .48;
   }
 
   .estimate-drawing-label {
