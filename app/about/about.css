@@ -209,8 +209,8 @@
 
 .about-service-grid {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 18px;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 16px;
 }
 
 .about-service-card {
@@ -356,6 +356,12 @@
     opacity: 1;
     filter: blur(0);
     transform: translateY(0);
+  }
+}
+
+@media (max-width: 1050px) and (min-width: 761px) {
+  .about-service-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 

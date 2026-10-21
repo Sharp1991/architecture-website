@@ -1,57 +1,51 @@
 import "./about.css";
 import ArchitectureNav from "../components/ArchitectureNav";
 
-const services = [
+const principles = [
   {
     number: "01",
-    title: "Architecture & design",
+    title: "Design with purpose",
     description:
-      "Thoughtful spaces shaped around your needs, lifestyle, site and the way you want to live.",
+      "A good design starts with how you want to live. We consider your needs, routines, priorities and the character of the site before shaping the space.",
   },
   {
     number: "02",
-    title: "Residential planning",
+    title: "Make space work",
     description:
-      "Practical home layouts that make the most of available space, natural light and everyday comfort.",
+      "Thoughtful layouts can make a home feel more comfortable and useful. Natural light, movement, privacy and practical storage all matter.",
   },
   {
     number: "03",
-    title: "Construction planning",
+    title: "Plan before building",
     description:
-      "A clearer starting point for understanding building requirements, finishes and preliminary costs.",
+      "Clearer decisions about requirements, materials, finishes and likely costs can help you understand the work ahead before construction begins.",
   },
   {
     number: "04",
-    title: "Building & construction",
+    title: "Keep people involved",
     description:
-      "A considered approach to turning a design into a real space, with attention to practical building needs.",
+      "Your project should reflect your priorities. Open conversations help bring design ideas and practical considerations into the same plan.",
   },
 ];
 
 const process = [
   {
     number: "01",
-    title: "Understand",
+    title: "Talk it through",
     description:
-      "We begin with your needs, ideas, site conditions and priorities.",
+      "Share your ideas, budget, plot details and what you need from the space.",
   },
   {
     number: "02",
-    title: "Design",
+    title: "Explore the options",
     description:
-      "We explore layouts and design possibilities suited to your way of living.",
+      "Review the design direction and practical choices that best fit your requirements.",
   },
   {
     number: "03",
-    title: "Plan",
+    title: "Plan the next step",
     description:
-      "We consider materials, finishes, space requirements and preliminary costs.",
-  },
-  {
-    number: "04",
-    title: "Move forward",
-    description:
-      "With a clearer plan, you can make informed decisions about the next steps.",
+      "Build a clearer picture of scope, decisions and the work needed to move forward.",
   },
 ];
 
@@ -69,15 +63,18 @@ export default function AboutPage() {
       </header>
 
       <section className="about-intro">
-        <p className="about-eyebrow about-reveal">GET TO KNOW STRUCTURA</p>
+        <p className="about-eyebrow about-reveal">
+          A MORE THOUGHTFUL WAY TO BUILD
+        </p>
         <h1 className="about-reveal about-reveal-delay">
-          Rooted in our region.
+          Make room for
           <br />
-          <em>Designed around you.</em>
+          <em>what matters.</em>
         </h1>
         <p className="about-lead">
-          We believe a well-designed home should feel right for the people who
-          live in it—and make sense for the place it stands.
+          A home is more than a plan on paper. It is a place shaped by your
+          everyday life, your priorities and the land it stands on. We bring
+          these considerations into the conversation from the beginning.
         </p>
         <span className="about-location">
           Architecture · Planning · Construction
@@ -86,71 +83,75 @@ export default function AboutPage() {
 
       <section className="about-story about-panel" id="our-approach">
         <div className="about-section-label">
-          <span>OUR APPROACH</span>
+          <span>OUR POINT OF VIEW</span>
           <span className="about-label-line" />
         </div>
         <div className="about-story-copy">
           <h2>
-            Good design begins with
+            Every project starts
             <br />
-            <em>understanding.</em>
+            with <em>listening.</em>
           </h2>
           <p>
-            Structura is a new, locally focused architecture and construction
-            firm being established with a simple idea: every project deserves
-            careful thought, practical planning and a personal approach.
+            Structura is being developed around a straightforward belief: good
+            building decisions begin with understanding the people, place and
+            purpose behind a project.
           </p>
           <p>
-            Building in Meghalaya and the wider Northeast means paying
-            attention to the site, terrain, rainfall, climate, materials and
-            the needs of the people who will use the space. These practical
-            considerations belong in the conversation from the beginning.
+            Across Meghalaya and the wider Northeast, a site can bring its own
+            terrain, rainfall, climate and access considerations. These are
+            not details to leave until later; they are part of making a plan
+            that responds to its setting.
           </p>
           <p>
-            Whether you are exploring an idea for a new home or preparing for
-            construction, our aim is to help make the process easier to
-            understand, one decision at a time.
+            Whether you are at the early idea stage or preparing for a build,
+            our aim is to help you explore your options, understand the
+            practical choices and approach the next decision with greater
+            clarity.
           </p>
         </div>
       </section>
 
       <section className="about-services" id="services">
         <div className="about-section-heading">
-          <p className="about-eyebrow">WHAT WE DO</p>
+          <p className="about-eyebrow">WHAT GUIDES OUR WORK</p>
           <h2>
-            From the first idea
+            Good spaces begin
             <br />
-            <em>to a clearer plan.</em>
+            <em>with good questions.</em>
           </h2>
           <p>
-            Design and planning should work together with the practical
-            realities of building.
+            Four principles keep the focus on the people who will use the
+            space and the realities of bringing an idea to life.
           </p>
         </div>
 
         <div className="about-service-grid">
-          {services.map((service) => (
-            <article className="about-service-card about-panel" key={service.number}>
-              <span className="about-card-number">{service.number}</span>
-              <h3>{service.title}</h3>
-              <p>{service.description}</p>
+          {principles.map((principle) => (
+            <article
+              className="about-service-card about-panel"
+              key={principle.number}
+            >
+              <span className="about-card-number">{principle.number}</span>
+              <h3>{principle.title}</h3>
+              <p>{principle.description}</p>
             </article>
           ))}
         </div>
-        <p className="about-disclaimer">
-          The scope of each service will be discussed and confirmed for your
-          individual project.
-        </p>
       </section>
 
       <section className="about-process" id="process">
         <div className="about-section-heading">
-          <p className="about-eyebrow">HOW WE APPROACH A PROJECT</p>
+          <p className="about-eyebrow">A CLEARER STARTING POINT</p>
           <h2>
-            A process built around
+            From first thought
             <br />
-            <em>clear decisions.</em>
+            <em>to next step.</em>
           </h2>
+          <p>
+            Every project is different, but a useful first conversation can
+            help turn a broad idea into something easier to plan.
+          </p>
         </div>
 
         <div className="about-process-list">
@@ -165,15 +166,16 @@ export default function AboutPage() {
       </section>
 
       <section className="about-contact about-panel" id="contact">
-        <p className="about-eyebrow">START A CONVERSATION</p>
+        <p className="about-eyebrow">YOUR IDEA, YOUR NEXT STEP</p>
         <h2>
-          Thinking about
+          Start with a conversation.
           <br />
-          <em>building something?</em>
+          <em>Build with more clarity.</em>
         </h2>
         <p>
-          Start with your ideas, your requirements and what matters most to
-          you. A good first conversation can help clarify what comes next.
+          Have a plot, a rough plan or simply an idea for a future home? Start
+          by outlining what you have in mind and explore the likely
+          construction costs.
         </p>
         <a className="about-button" href="/estimate">
           Explore construction costs <span aria-hidden="true">↗</span>
