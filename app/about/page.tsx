@@ -62,6 +62,39 @@ export default function AboutPage() {
         </nav>
       </header>
 
+      <div className="about-geometry" aria-hidden="true">
+        <svg viewBox="0 0 520 620" role="presentation">
+          <g className="about-geometry-lines">
+            <path d="M100 150 L280 84 L440 145 L260 211 Z" />
+            <path d="M100 150 L100 164 L260 225 L440 159 L440 145" />
+            <path d="M260 211 L260 225" />
+
+            <path d="M65 295 L250 226 L455 303 L270 372 Z" />
+            <path d="M65 295 L65 309 L270 386 L455 317 L455 303" />
+            <path d="M270 372 L270 386" />
+
+            <path d="M120 452 L295 387 L455 447 L280 513 Z" />
+            <path d="M120 452 L120 466 L280 527 L455 461 L455 447" />
+            <path d="M280 513 L280 527" />
+
+            <path d="M100 150 L120 452" />
+            <path d="M440 145 L455 447" />
+            <path d="M260 211 L270 372 L280 513" />
+            <path d="M280 84 L295 387" />
+            <path d="M40 220 L475 385" className="about-geometry-guide" />
+            <path d="M150 90 L350 550" className="about-geometry-guide" />
+            <path d="M50 385 L470 230" className="about-geometry-guide" />
+          </g>
+          <g className="about-geometry-traces">
+            <path d="M100 150 L280 84 L440 145 L260 211 Z" />
+            <path d="M65 295 L250 226 L455 303 L270 372 Z" />
+            <path d="M120 452 L295 387 L455 447 L280 513 Z" />
+            <path d="M100 150 L100 164 L260 225" />
+            <path d="M455 303 L455 317 L270 386" />
+          </g>
+        </svg>
+      </div>
+
       <section className="about-intro">
         <p className="about-eyebrow about-reveal">
           A MORE THOUGHTFUL WAY TO BUILD

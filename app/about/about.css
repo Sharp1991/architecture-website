@@ -447,9 +447,11 @@
 @media (prefers-reduced-motion: reduce) {
   .about-page::before {
     animation: none;
+  }
 
-  .about-page { animation: none !important; }
-}
+  .about-page {
+    animation: none !important;
+  }
 
   .about-reveal,
   .about-reveal-delay {
@@ -469,5 +471,96 @@
   }
   50% {
     background-position: 16px 16px, -16px 16px, 0 0;
+  }
+}
+
+
+/* Abstract architectural drawing: decorative, lightweight, and asset-free */
+.about-page {
+  position: relative;
+  isolation: isolate;
+}
+
+.about-page > .about-geometry {
+  position: absolute;
+  z-index: 0;
+  top: 100px;
+  right: -4%;
+  width: min(560px, 72vw);
+  height: 650px;
+  overflow: hidden;
+  opacity: 0.52;
+  pointer-events: none;
+}
+
+.about-geometry svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.about-geometry-lines path {
+  fill: none;
+  stroke: #d6c5a9;
+  stroke-width: 1.05;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  opacity: 0.48;
+}
+
+.about-geometry-lines .about-geometry-guide {
+  stroke-dasharray: 3 9;
+  opacity: 0.22;
+}
+
+.about-geometry-traces path {
+  fill: none;
+  stroke: #f0d9ad;
+  stroke-width: 1.7;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: 32 430;
+  animation: aboutGeometryTrace 9s linear infinite;
+  filter: drop-shadow(0 0 3px rgba(214, 197, 169, 0.7));
+  opacity: 0.9;
+}
+
+.about-geometry-traces path:nth-child(2) {
+  animation-delay: -3s;
+}
+
+.about-geometry-traces path:nth-child(3) {
+  animation-delay: -6s;
+}
+
+.about-geometry-traces path:nth-child(4) {
+  animation-delay: -1.5s;
+}
+
+.about-geometry-traces path:nth-child(5) {
+  animation-delay: -4.5s;
+}
+
+@keyframes aboutGeometryTrace {
+  from { stroke-dashoffset: 462; }
+  to { stroke-dashoffset: 0; }
+}
+
+@media (max-width: 760px) {
+  .about-page > .about-geometry {
+    top: 125px;
+    right: -23%;
+    width: 96vw;
+    height: 560px;
+    opacity: 0.28;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .about-geometry-traces path {
+    animation: none;
+    stroke-dasharray: none;
+    opacity: 0.42;
   }
 }
