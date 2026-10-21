@@ -13,6 +13,8 @@ export default function ArchitectureNav() {
 
     if (pathname === "/about") {
       setActiveIndex(2);
+    } else if (pathname === "/contact") {
+      setActiveIndex(3);
     } else if (hash === "#contact") {
       setActiveIndex(3);
     } else if (hash === "#projects") {
@@ -26,6 +28,7 @@ export default function ArchitectureNav() {
     const updateHash = () => {
       const hash = window.location.hash;
       if (window.location.pathname === "/about") setActiveIndex(2);
+      else if (window.location.pathname === "/contact") setActiveIndex(3);
       else if (hash === "#contact") setActiveIndex(3);
       else if (hash === "#projects") setActiveIndex(1);
       else setActiveIndex(0);
@@ -45,7 +48,7 @@ export default function ArchitectureNav() {
         { label: "Home", href: "/#home" },
         { label: "Work", href: "/#projects" },
         { label: "About", href: "/about" },
-        { label: "Contact", href: "/#contact" },
+        { label: "Contact", href: "/contact" },
       ]}
       initialActiveIndex={activeIndex}
       activeIndex={activeIndex}
