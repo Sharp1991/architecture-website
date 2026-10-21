@@ -1,10 +1,43 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { usePathname } from "next/navigation";
 import GooeyNav from "./GooeyNav";
 
 export default function ArchitectureNav() {
+  const pathname = usePathname();
   const [activeIndex, setActiveIndex] = useState(0);
+
+  useEffect(() => {
+    const hash = window.location.hash;
+
+    if (pathname === "/about") {
+      setActiveIndex(2);
+    } else if (hash === "#contact") {
+      setActiveIndex(3);
+    } else if (hash === "#projects") {
+      setActiveIndex(1);
+    } else {
+      setActiveIndex(0);
+    }
+  }, [pathname]);
+
+  useEffect(() => {
+    const updateHash = () => {
+      const hash = window.location.hash;
+      if (window.location.pathname === "/about") setActiveIndex(2);
+      else if (hash === "#contact") setActiveIndex(3);
+      else if (hash === "#projects") setActiveIndex(1);
+      else setActiveIndex(0);
+    };
+
+    window.addEventListener("hashchange", updateHash);
+    window.addEventListener("popstate", updateHash);
+    return () => {
+      window.removeEventListener("hashchange", updateHash);
+      window.removeEventListener("popstate", updateHash);
+    };
+  }, []);
 
   return (
     <GooeyNav
@@ -14,7 +47,7 @@ export default function ArchitectureNav() {
         { label: "About", href: "/about" },
         { label: "Contact", href: "/#contact" },
       ]}
-      initialActiveIndex={0}
+      initialActiveIndex={activeIndex}
       activeIndex={activeIndex}
       onChange={(index) => setActiveIndex(index)}
       theme="dark"
