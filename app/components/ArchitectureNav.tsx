@@ -49,6 +49,7 @@ export default function ArchitectureNav() {
         { label: "Work", href: "/#projects" },
         { label: "About", href: "/about" },
         { label: "Contact", href: "/contact" },
+        { label: "Client Login", href: "/portal" },
       ]}
       initialActiveIndex={activeIndex}
       activeIndex={activeIndex}
