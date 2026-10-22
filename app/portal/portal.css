@@ -856,3 +856,312 @@
     transition: none;
   }
 }
+
+/* Interactive 2D floor plan */
+.plan-viewer {
+  border: 1px solid var(--portal-line);
+  background: rgba(255, 255, 255, .72);
+}
+
+.plan-toolbar {
+  padding: 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  border-bottom: 1px solid var(--portal-line);
+}
+
+.plan-floor-buttons,
+.plan-zoom-controls {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+
+.plan-floor-buttons button,
+.plan-zoom-controls button {
+  min-height: 32px;
+  padding: 0 10px;
+  border: 1px solid var(--portal-line);
+  background: #fff;
+  color: var(--portal-muted);
+  font: inherit;
+  font-size: 10px;
+  cursor: pointer;
+}
+
+.plan-floor-buttons button.active {
+  background: var(--portal-ink);
+  border-color: var(--portal-ink);
+  color: #fff;
+}
+
+.plan-zoom-controls span {
+  min-width: 38px;
+  text-align: center;
+  color: var(--portal-muted);
+  font-size: 9px;
+}
+
+.plan-zoom-controls button:disabled {
+  opacity: .35;
+  cursor: not-allowed;
+}
+
+.plan-zoom-controls .plan-reset {
+  border-color: transparent;
+  color: #8b754e;
+  background: transparent;
+}
+
+.plan-canvas {
+  min-height: 240px;
+  padding: 16px 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: auto;
+  background: #f8f7f2;
+}
+
+.plan-drawing {
+  width: 100%;
+  min-width: 340px;
+  transform-origin: center;
+  transition: transform .18s ease;
+}
+
+.plan-drawing svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.plan-room {
+  cursor: pointer;
+  outline: none;
+}
+
+.plan-room rect {
+  fill: #fffefa;
+  stroke: #343a35;
+  stroke-width: 2;
+  transition: fill .15s ease;
+}
+
+.plan-room:hover rect,
+.plan-room:focus rect {
+  fill: #f0eadc;
+}
+
+.plan-room.selected rect {
+  fill: #e9dfc9;
+  stroke: #a58b5b;
+  stroke-width: 2.5;
+}
+
+.plan-room-name {
+  fill: #343a35;
+  font: 11px Arial, Helvetica, sans-serif;
+  pointer-events: none;
+}
+
+.plan-room-area {
+  fill: #777c76;
+  font: 9px Arial, Helvetica, sans-serif;
+  pointer-events: none;
+}
+
+.plan-room-details {
+  padding: 16px 18px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  border-top: 1px solid var(--portal-line);
+}
+
+.plan-room-details > div {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.plan-room-details span {
+  color: var(--portal-muted);
+  font-size: 8px;
+  letter-spacing: 1px;
+}
+
+.plan-room-details strong {
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.plan-room-details small {
+  color: var(--portal-muted);
+  font-size: 9px;
+}
+
+.plan-area {
+  text-align: right;
+}
+
+.plan-disclaimer {
+  margin: 0;
+  padding: 0 18px 16px;
+  color: var(--portal-muted);
+  font-size: 9px;
+  line-height: 1.7;
+}
+
+@media (max-width: 600px) {
+  .plan-toolbar {
+    align-items: flex-start;
+  }
+
+  .plan-canvas {
+    justify-content: flex-start;
+    padding: 12px 8px;
+  }
+
+  .plan-drawing {
+    min-width: 340px;
+  }
+}
+
+/* More detailed architectural drawing annotations */
+.plan-meta {
+  padding: 10px 14px;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px;
+  border-bottom: 1px solid var(--portal-line);
+  color: var(--portal-muted);
+  font-size: 8px;
+  letter-spacing: 1px;
+}
+
+.plan-room-fill {
+  fill: #fffefa;
+  stroke: #303631;
+  stroke-width: 2.2;
+  transition: fill .15s ease;
+}
+
+.plan-room.selected .plan-room-fill {
+  fill: #eee4d0;
+  stroke: #a58b5b;
+  stroke-width: 2.5;
+}
+
+.plan-fixture {
+  fill: none;
+  stroke: #96988f;
+  stroke-width: 1.1;
+  pointer-events: none;
+}
+
+.plan-fixture rect {
+  fill: #f7f5ef;
+  stroke: #96988f;
+  stroke-width: 1;
+}
+
+.plan-fixture circle,
+.plan-fixture ellipse {
+  fill: #fbfaf6;
+  stroke: #96988f;
+  stroke-width: 1;
+}
+
+.plan-openings {
+  fill: none;
+  stroke: #303631;
+  stroke-width: 1.5;
+  stroke-linecap: square;
+}
+
+.plan-openings path {
+  vector-effect: non-scaling-stroke;
+}
+
+.plan-dimensions {
+  fill: none;
+  stroke: #8c8b81;
+  stroke-width: .8;
+}
+
+.plan-dimensions text,
+.plan-annotation text {
+  fill: #77796f;
+  stroke: none;
+  font: 7px Arial, Helvetica, sans-serif;
+}
+
+.plan-annotation {
+  fill: none;
+  stroke: #77796f;
+  stroke-width: 1;
+}
+
+.plan-annotation text:first-child {
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.plan-legend {
+  padding: 12px 16px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  border-top: 1px solid var(--portal-line);
+  color: var(--portal-muted);
+  font-size: 9px;
+}
+
+.plan-legend span {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.plan-legend i {
+  width: 14px;
+  height: 10px;
+  display: inline-block;
+}
+
+.legend-wall {
+  border: 2px solid #303631;
+}
+
+.legend-window {
+  border-top: 3px double #303631;
+  border-bottom: 1px solid #303631;
+}
+
+.legend-door {
+  border-top: 1px solid #303631;
+  border-right: 1px solid #303631;
+  border-radius: 0 100% 0 0;
+}
+
+.legend-selected {
+  border: 1px solid #a58b5b;
+  background: #eee4d0;
+}
+
+@media (max-width: 600px) {
+  .plan-meta {
+    font-size: 7px;
+  }
+
+  .plan-legend {
+    gap: 9px;
+  }
+}

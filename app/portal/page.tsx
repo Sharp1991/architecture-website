@@ -2,6 +2,7 @@
 
 import { useState, type FormEvent } from "react";
 import "./portal.css";
+import FloorPlan from "./FloorPlan";
 
 const demoEmail = "demo@structura.studio";
 const demoPassword = "Structura2026!";
@@ -240,16 +241,18 @@ export default function ClientPortal() {
                             </button>
                           ))}
                         </div>
-                        <div className="portal-viewer-empty">
-                          <span className="portal-viewer-mark">{viewType === "2D Drawings" ? "⌗" : viewType === "3D Model" ? "◇" : "▤"}</span>
-                          <h3>{viewType}</h3>
-                          <p>{viewType === "2D Drawings"
-                            ? "Floor plans and technical drawings will appear here when uploaded."
-                            : viewType === "3D Model"
-                            ? "An interactive 3D preview can be connected here when a model is available."
-                            : "Exterior elevations and architectural views will appear here when available."}</p>
-                          <span className="portal-viewer-status">NO FILES ADDED YET</span>
-                        </div>
+                        {viewType === "2D Drawings" ? (
+                          <FloorPlan />
+                        ) : (
+                          <div className="portal-viewer-empty">
+                            <span className="portal-viewer-mark">{viewType === "3D Model" ? "◇" : "▤"}</span>
+                            <h3>{viewType}</h3>
+                            <p>{viewType === "3D Model"
+                              ? "An interactive 3D preview can be connected here when a model is available."
+                              : "Exterior elevations and architectural views will appear here when available."}</p>
+                            <span className="portal-viewer-status">NO FILES ADDED YET</span>
+                          </div>
+                        )}
                       </>
                     )}
 
