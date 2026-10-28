@@ -1,50 +1,42 @@
 import SiteHeader from "../components/SiteHeader";
 import "./about.css";
-const principles = [
-  {
-    number: "01",
-    title: "Design with purpose",
-    description:
-      "A good design starts with how you want to live. We consider your needs, routines, priorities and the character of the site before shaping the space.",
-  },
-  {
-    number: "02",
-    title: "Make space work",
-    description:
-      "Thoughtful layouts can make a home feel more comfortable and useful. Natural light, movement, privacy and practical storage all matter.",
-  },
-  {
-    number: "03",
-    title: "Plan before building",
-    description:
-      "Clearer decisions about requirements, materials, finishes and likely costs can help you understand the work ahead before construction begins.",
-  },
-  {
-    number: "04",
-    title: "Keep people involved",
-    description:
-      "Your project should reflect your priorities. Open conversations help bring design ideas and practical considerations into the same plan.",
-  },
-];
 
 const process = [
   {
     number: "01",
-    title: "Talk it through",
+    title: "Understanding",
     description:
-      "Share your ideas, budget, plot details and what you need from the space.",
+      "We begin with your ideas, priorities, budget and the way you want the space to work.",
   },
   {
     number: "02",
-    title: "Explore the options",
+    title: "Site & context",
     description:
-      "Review the design direction and practical choices that best fit your requirements.",
+      "We consider the plot, its setting, access, terrain and the conditions that may shape the design.",
   },
   {
     number: "03",
-    title: "Plan the next step",
+    title: "Concept design",
     description:
-      "Build a clearer picture of scope, decisions and the work needed to move forward.",
+      "We explore layouts and architectural directions to establish an approach suited to your needs.",
+  },
+  {
+    number: "04",
+    title: "Design refinement",
+    description:
+      "The preferred direction is developed through considered layouts, materials and practical decisions.",
+  },
+  {
+    number: "05",
+    title: "Planning the build",
+    description:
+      "The scope, key requirements and likely costs are clarified to help you prepare for the next stage.",
+  },
+  {
+    number: "06",
+    title: "Moving forward",
+    description:
+      "With a clearer direction, you can make informed decisions about the next steps for your project.",
   },
 ];
 
@@ -53,163 +45,76 @@ export default function AboutPage() {
     <main className="about-page">
       <SiteHeader />
 
-      <div className="about-geometry" aria-hidden="true">
-        <svg viewBox="0 0 520 620" role="presentation">
-          <g className="about-geometry-lines">
-            <path d="M100 150 L280 84 L440 145 L260 211 Z" />
-            <path d="M100 150 L100 164 L260 225 L440 159 L440 145" />
-            <path d="M260 211 L260 225" />
-
-            <path d="M65 295 L250 226 L455 303 L270 372 Z" />
-            <path d="M65 295 L65 309 L270 386 L455 317 L455 303" />
-            <path d="M270 372 L270 386" />
-
-            <path d="M120 452 L295 387 L455 447 L280 513 Z" />
-            <path d="M120 452 L120 466 L280 527 L455 461 L455 447" />
-            <path d="M280 513 L280 527" />
-
-            <path d="M100 150 L120 452" />
-            <path d="M440 145 L455 447" />
-            <path d="M260 211 L270 372 L280 513" />
-            <path d="M280 84 L295 387" />
-            <path d="M40 220 L475 385" className="about-geometry-guide" />
-            <path d="M150 90 L350 550" className="about-geometry-guide" />
-            <path d="M50 385 L470 230" className="about-geometry-guide" />
-          </g>
-          <g className="about-geometry-traces">
-            <path d="M100 150 L280 84 L440 145 L260 211 Z" />
-            <path d="M65 295 L250 226 L455 303 L270 372 Z" />
-            <path d="M120 452 L295 387 L455 447 L280 513 Z" />
-            <path d="M100 150 L100 164 L260 225" />
-            <path d="M455 303 L455 317 L270 386" />
-          </g>
-        </svg>
-      </div>
-
       <section className="about-intro">
-        <p className="about-eyebrow about-reveal">
-          A MORE THOUGHTFUL WAY TO BUILD
-        </p>
-        <h1 className="about-reveal about-reveal-delay">
-          Make room for
+        <p className="about-eyebrow">ABOUT STRUCTURA</p>
+        <h1>
+          Good architecture
           <br />
-          <em>what matters.</em>
+          begins with <em>understanding.</em>
         </h1>
         <p className="about-lead">
-          A home is more than a plan on paper. It is a place shaped by your
-          everyday life, your priorities and the land it stands on. We bring
-          these considerations into the conversation from the beginning.
+          Every site is different. Every way of living is different.
+          We bring these details together to help shape spaces
+          that are considered, practical and personal.
         </p>
-        <span className="about-location">
-          Architecture · Planning · Construction
-        </span>
+        <a className="about-text-link" href="#our-process">
+          Discover our approach <span aria-hidden="true">↓</span>
+        </a>
       </section>
 
-      <section className="about-story about-panel" id="our-approach">
-        <div className="about-section-label">
-          <span>OUR POINT OF VIEW</span>
-          <span className="about-label-line" />
+      <section className="about-layout" id="our-process">
+        <div className="about-process">
+          <div className="about-section-heading">
+            <p className="about-eyebrow">OUR APPROACH</p>
+            <h2>A clear process.<br /><em>Thoughtful decisions.</em></h2>
+            <p>
+              From the first conversation to a clearer plan for building,
+              each stage helps bring the idea into focus.
+            </p>
+          </div>
+
+          <div className="about-process-grid">
+            {process.map((step) => (
+              <article className="about-step" key={step.number}>
+                <span className="about-step-number">{step.number}</span>
+                <h3>{step.title}</h3>
+                <p>{step.description}</p>
+              </article>
+            ))}
+          </div>
         </div>
-        <div className="about-story-copy">
-          <h2>
-            Every project starts
-            <br />
-            with <em>listening.</em>
-          </h2>
-          <p>
-            Structura is being developed around a straightforward belief: good
-            building decisions begin with understanding the people, place and
-            purpose behind a project.
-          </p>
-          <p>
-            Across Meghalaya and the wider Northeast, a site can bring its own
-            terrain, rainfall, climate and access considerations. These are
-            not details to leave until later; they are part of making a plan
-            that responds to its setting.
-          </p>
-          <p>
-            Whether you are at the early idea stage or preparing for a build,
-            our aim is to help you explore your options, understand the
-            practical choices and approach the next decision with greater
-            clarity.
-          </p>
-        </div>
+
+        <aside className="about-visual">
+          <div
+            className="about-photo"
+            role="img"
+            aria-label="Architectural photography of a contemporary building"
+          />
+          <div className="about-visual-caption">
+            <span>DESIGN / CONTEXT / PURPOSE</span>
+            <span>STRUCTURA</span>
+          </div>
+        </aside>
       </section>
 
-      <section className="about-services" id="services">
-        <div className="about-section-heading">
-          <p className="about-eyebrow">WHAT GUIDES OUR WORK</p>
-          <h2>
-            Good spaces begin
-            <br />
-            <em>with good questions.</em>
-          </h2>
-          <p>
-            Four principles keep the focus on the people who will use the
-            space and the realities of bringing an idea to life.
-          </p>
-        </div>
-
-        <div className="about-service-grid">
-          {principles.map((principle) => (
-            <article
-              className="about-service-card about-panel"
-              key={principle.number}
-            >
-              <span className="about-card-number">{principle.number}</span>
-              <h3>{principle.title}</h3>
-              <p>{principle.description}</p>
-            </article>
-          ))}
-        </div>
-      </section>
-
-      <section className="about-process" id="process">
-        <div className="about-section-heading">
-          <p className="about-eyebrow">A CLEARER STARTING POINT</p>
-          <h2>
-            From first thought
-            <br />
-            <em>to next step.</em>
-          </h2>
-          <p>
-            Every project is different, but a useful first conversation can
-            help turn a broad idea into something easier to plan.
-          </p>
-        </div>
-
-        <div className="about-process-list">
-          {process.map((step) => (
-            <article className="about-process-step" key={step.number}>
-              <span className="about-card-number">{step.number}</span>
-              <h3>{step.title}</h3>
-              <p>{step.description}</p>
-            </article>
-          ))}
-        </div>
-      </section>
-
-      <section className="about-contact about-panel" id="contact">
-        <p className="about-eyebrow">YOUR IDEA, YOUR NEXT STEP</p>
+      <section className="about-principle">
+        <p className="about-eyebrow">WHAT MATTERS</p>
         <h2>
-          Start with a conversation.
+          Design for the way
           <br />
-          <em>Build with more clarity.</em>
+          <em>people actually live.</em>
         </h2>
         <p>
-          Have a plot, a rough plan or simply an idea for a future home? Start
-          by outlining what you have in mind and explore the likely
-          construction costs.
+          Good spaces balance the ambition of an idea with the realities
+          of its setting. Climate, terrain, natural light, movement and
+          everyday needs all deserve a place in the conversation.
         </p>
-        <a className="about-button" href="/estimate">
-          Explore construction costs <span aria-hidden="true">↗</span>
-        </a>
       </section>
 
       <footer className="about-footer">
         <a href="/" className="about-footer-brand">STRUCTURA</a>
         <span>Thoughtful spaces. Practical planning.</span>
-        <a href="/estimate">Construction cost estimator ↗</a>
+        <a href="/estimate">Explore construction costs ↗</a>
       </footer>
     </main>
   );
