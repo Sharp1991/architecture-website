@@ -19,16 +19,16 @@
   position: relative;
   min-height: 230px;
   padding: 28px 24px;
-  border: 1px solid rgba(201, 154, 107, .25);
-  background: linear-gradient(145deg, rgba(255,255,255,.065), rgba(8,17,25,.28));
+  border: 1px solid var(--brand-card-border-contact);
+  background: var(--brand-card-bg-contact);
   backdrop-filter: blur(5px);
   transition: border-color .3s ease, transform .3s ease, background .3s ease;
 }
 
 .contact-info-card:hover {
-  border-color: rgba(201, 154, 107, .7);
+  border-color: var(--brand-card-border-contact-hover);
   transform: translateY(-4px);
-  background: linear-gradient(145deg, rgba(255,255,255,.09), rgba(8,17,25,.35));
+  background: var(--brand-card-bg-contact-hover);
 }
 
 .contact-card-number {
@@ -41,8 +41,8 @@
 
 .contact-info-card h2 {
   margin: 0 0 12px;
-  color: #fff;
-  font-family: 'Playfair Display', serif;
+  color: var(--brand-text);
+  font-family: var(--brand-font-display);
   font-size: 1.35rem;
   font-weight: 400;
 }
@@ -50,7 +50,7 @@
 .contact-info-card p {
   min-height: 48px;
   margin: 0 0 18px;
-  color: #a0b2c0;
+  color: var(--brand-muted);
   font-size: .82rem;
   line-height: 1.7;
 }
@@ -64,13 +64,13 @@
 }
 
 .contact-info-card a:hover {
-  color: #fff;
+  color: var(--brand-text);
 }
 
 .contact-demo-note {
   max-width: 1100px;
   margin: 28px auto 0;
-  color: rgba(201, 154, 107, .7);
+  color: var(--brand-accent-contact);
   font-size: .62rem;
   letter-spacing: 1.8px;
   text-align: center;

@@ -23,6 +23,10 @@
   --brand-accent-about: #d6c5a9;
   --brand-accent-estimate: #F0C66E;
   --brand-accent-contact: #C99A6B;
+  --brand-card-border-contact: rgba(201, 154, 107, .25);
+  --brand-card-border-contact-hover: rgba(201, 154, 107, .7);
+  --brand-card-bg-contact: linear-gradient(145deg, rgba(255,255,255,.065), rgba(8,17,25,.28));
+  --brand-card-bg-contact-hover: linear-gradient(145deg, rgba(255,255,255,.09), rgba(8,17,25,.35));
   --sh-class: #2d5e9d;
   --sh-identifier: #354150;
   --sh-sign: #8996a3;
