@@ -8,11 +8,11 @@
   --about-accent: var(--brand-accent-about);
   min-height: 100vh;
   padding: 0 5%;
-  background-color: #111920;
+  background-color: var(--brand-bg);
   background-image:
-    linear-gradient(rgba(214,197,169,.045) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(214,197,169,.045) 1px, transparent 1px),
-    radial-gradient(circle at 50% 0%, #3c596e 0%, #1e2c37 60%, #111920 100%);
+    linear-gradient(var(--brand-about-grid) 1px, transparent 1px),
+    linear-gradient(90deg, var(--brand-about-grid) 1px, transparent 1px),
+    radial-gradient(circle at 50% 0%, var(--brand-about-glow) 0%, var(--brand-about-mid) 60%, var(--brand-bg) 100%);
   background-size: 32px 32px, 32px 32px, auto;
   background-attachment: fixed;
   animation: aboutGridDrift 12s linear infinite;

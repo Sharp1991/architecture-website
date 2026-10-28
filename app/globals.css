@@ -21,6 +21,9 @@
   --brand-font-body: 'Inter', sans-serif;
   --brand-font-display: 'Playfair Display', serif;
   --brand-accent-about: #d6c5a9;
+  --brand-about-grid: rgba(214,197,169,.045);
+  --brand-about-glow: #3c596e;
+  --brand-about-mid: #1e2c37;
   --brand-accent-estimate: #F0C66E;
   --brand-accent-contact: #C99A6B;
   --brand-card-border-contact: rgba(201, 154, 107, .25);
