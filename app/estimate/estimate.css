@@ -1,12 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&display=swap');
 
 .estimate-page {
-  --estimate-bg: #111920;
-  --estimate-panel: rgba(255,255,255,.04);
-  --estimate-panel-light: rgba(255,255,255,.08);
-  --estimate-border: rgba(255,255,255,.10);
-  --estimate-text: #fff;
-  --estimate-muted: #a0b2c0;
+  --estimate-bg: var(--brand-bg);
+  --estimate-panel: var(--brand-panel);
+  --estimate-panel-light: var(--brand-panel-light);
+  --estimate-border: var(--brand-border);
+  --estimate-text: var(--brand-text);
+  --estimate-muted: var(--brand-muted);
   --estimate-accent: #ffffff;
   min-height: 100svh;
   padding: 0 5%;
@@ -15,7 +15,7 @@
   position: relative;
   isolation: isolate;
   color: var(--estimate-text);
-  font-family: 'Inter', sans-serif;
+  font-family: var(--brand-font-body);
   font-weight: 400;
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
@@ -175,7 +175,7 @@
   height: 28px;
   border: 1px solid var(--estimate-muted);
   color: var(--estimate-text);
-  font-family: 'Playfair Display', serif;
+  font-family: var(--brand-font-display);
   font-size: 1.1rem;
 }
 
@@ -221,7 +221,7 @@
 
 .estimate-intro h1 {
   margin: 0 0 24px;
-  font-family: 'Playfair Display', serif;
+  font-family: var(--brand-font-display);
   font-size: clamp(2.4rem, 5.5vw, 3.5rem);
   font-weight: 400;
   letter-spacing: -.5px;
@@ -287,14 +287,14 @@
 
 .estimate-section-heading > span {
   color: var(--estimate-accent);
-  font-family: 'Inter', sans-serif;
+  font-family: var(--brand-font-body);
   font-size: .8rem;
   font-weight: 500;
 }
 
 .estimate-section-heading h2 {
   margin: 0;
-  font-family: 'Playfair Display', serif;
+  font-family: var(--brand-font-display);
   font-size: 1.6rem;
   font-weight: 400;
 }
@@ -342,7 +342,7 @@
   outline: none;
   background: rgba(0,0,0,.2);
   color: var(--estimate-text);
-  font-family: 'Inter', sans-serif;
+  font-family: var(--brand-font-body);
   font-size: .95rem;
   font-weight: 400;
   color-scheme: dark;
@@ -460,7 +460,7 @@
   border-radius: 2px;
   background: var(--estimate-accent);
   color: #111920;
-  font-family: 'Inter', sans-serif;
+  font-family: var(--brand-font-body);
   font-size: .9rem;
   font-weight: 600;
   letter-spacing: .5px;
@@ -503,7 +503,7 @@
 .estimate-total {
   margin: 0;
   color: var(--estimate-text);
-  font-family: 'Playfair Display', serif;
+  font-family: var(--brand-font-display);
   font-size: clamp(2rem, 4vw, 2.8rem);
   font-weight: 400;
   letter-spacing: -.5px;
@@ -568,7 +568,7 @@
 .estimate-category-heading h3,
 .estimate-assumptions h3 {
   margin: 0;
-  font-family: 'Playfair Display', serif;
+  font-family: var(--brand-font-display);
   font-size: 1.25rem;
   font-weight: 400;
 }
@@ -724,7 +724,7 @@
 
 .estimate-empty h2 {
   margin: 0 0 16px;
-  font-family: 'Playfair Display', serif;
+  font-family: var(--brand-font-display);
   font-size: 2.2rem;
   font-weight: 400;
   letter-spacing: -.5px;
@@ -783,7 +783,7 @@
 }
 
 .estimate-footer a {
-  font-family: 'Playfair Display', serif;
+  font-family: var(--brand-font-display);
   font-weight: 500;
   letter-spacing: 1.5px;
 }
@@ -1112,7 +1112,7 @@
 
 .estimate-calculating h2 {
   margin: 8px 0 12px;
-  font-family: 'Playfair Display', serif;
+  font-family: var(--brand-font-display);
   font-size: clamp(1.6rem, 4vw, 2.2rem);
   font-weight: 400;
 }

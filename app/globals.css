@@ -11,6 +11,18 @@
 
 /* Light theme colors */
 :root {
+  /* Shared Structura design tokens */
+  --brand-bg: #111920;
+  --brand-panel: rgba(255,255,255,.04);
+  --brand-panel-light: rgba(255,255,255,.08);
+  --brand-border: rgba(255,255,255,.10);
+  --brand-text: #ffffff;
+  --brand-muted: #a0b2c0;
+  --brand-font-body: 'Inter', sans-serif;
+  --brand-font-display: 'Playfair Display', serif;
+  --brand-accent-about: #d6c5a9;
+  --brand-accent-estimate: #F0C66E;
+  --brand-accent-contact: #C99A6B;
   --sh-class: #2d5e9d;
   --sh-identifier: #354150;
   --sh-sign: #8996a3;
