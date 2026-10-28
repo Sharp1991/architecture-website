@@ -1,5 +1,4 @@
-import ArchitectureNav from "./components/ArchitectureNav";
-
+import SiteHeader from "./components/SiteHeader";
 export default function Home() {
   return (
     <main className="architecture-site">
@@ -7,20 +6,7 @@ export default function Home() {
         <div className="architecture-overlay" />
 
 
-        <header className="architecture-header">
-          <a href="/" className="architecture-brand" aria-label="Structura home">
-            <span className="brand-mark">S</span>
-            <span>STRUCTURA</span>
-          </a>
-
-          <div className="architecture-nav">
-            <ArchitectureNav />
-          </div>
-
-          <a href="#contact" className="header-contact">
-            Get in touch <span aria-hidden="true">↗</span>
-          </a>
-        </header>
+        <SiteHeader />
 
         <div className="architecture-content" id="home">
           <p className="architecture-eyebrow">

@@ -1,6 +1,5 @@
+import SiteHeader from "../components/SiteHeader";
 import "./about.css";
-import ArchitectureNav from "../components/ArchitectureNav";
-
 const principles = [
   {
     number: "01",
@@ -52,15 +51,7 @@ const process = [
 export default function AboutPage() {
   return (
     <main className="about-page">
-      <header className="about-header">
-        <a href="/" className="about-brand" aria-label="Structura home">
-          <span className="about-brand-mark">S</span>
-          STRUCTURA
-        </a>
-        <nav className="about-nav" aria-label="Main navigation">
-          <ArchitectureNav />
-        </nav>
-      </header>
+      <SiteHeader />
 
       <div className="about-geometry" aria-hidden="true">
         <svg viewBox="0 0 520 620" role="presentation">

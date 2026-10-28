@@ -1,7 +1,6 @@
+import SiteHeader from "../components/SiteHeader";
 import "../estimate/estimate.css";
 import "./contact.css";
-import ArchitectureNav from "../components/ArchitectureNav";
-
 export default function ContactPage() {
   return (
     <main className="estimate-page contact-page">
@@ -24,14 +23,7 @@ export default function ContactPage() {
         <span className="estimate-drawing-label">STRUCTURA / CONTACT</span>
       </div>
 
-      <header className="estimate-header">
-        <a href="/" className="estimate-brand">
-          <span className="estimate-brand-mark">S</span> STRUCTURA
-        </a>
-        <nav className="estimate-nav" aria-label="Main navigation">
-          <ArchitectureNav />
-        </nav>
-      </header>
+      <SiteHeader />
 
       <section className="estimate-intro contact-intro">
         <p className="estimate-eyebrow">GET IN TOUCH</p>

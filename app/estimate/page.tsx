@@ -1,7 +1,8 @@
 "use client";
 
+import SiteHeader from "../components/SiteHeader";
+
 import "./estimate.css";
-import ArchitectureNav from "../components/ArchitectureNav";
 import { useRef, useState } from "react";
 import { calculateEstimate } from "../lib/estimate-engine";
 import type { EstimateResult } from "../lib/estimate-engine";
@@ -174,14 +175,7 @@ export default function EstimatePage() {
           ))}
         </div>
       )}
-      <header className="estimate-header">
-        <a href="/" className="estimate-brand">
-          <span className="estimate-brand-mark">S</span> STRUCTURA
-        </a>
-        <nav className="estimate-nav" aria-label="Main navigation">
-          <ArchitectureNav />
-        </nav>
-      </header>
+      <SiteHeader />
 
       <section className="estimate-intro">
         <p className="estimate-eyebrow estimate-blur-reveal">PLAN YOUR HOME</p>
