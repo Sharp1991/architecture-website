@@ -11,7 +11,9 @@ export default function ArchitectureNav() {
   useEffect(() => {
     const hash = window.location.hash;
 
-    if (pathname === "/about") {
+    if (pathname === "/work") {
+      setActiveIndex(1);
+    } else if (pathname === "/about") {
       setActiveIndex(2);
     } else if (pathname === "/contact") {
       setActiveIndex(3);
@@ -27,7 +29,8 @@ export default function ArchitectureNav() {
   useEffect(() => {
     const updateHash = () => {
       const hash = window.location.hash;
-      if (window.location.pathname === "/about") setActiveIndex(2);
+      if (window.location.pathname === "/work") setActiveIndex(1);
+      else if (window.location.pathname === "/about") setActiveIndex(2);
       else if (window.location.pathname === "/contact") setActiveIndex(3);
       else if (hash === "#contact") setActiveIndex(3);
       else if (hash === "#projects") setActiveIndex(1);
@@ -46,7 +49,7 @@ export default function ArchitectureNav() {
     <GooeyNav
       items={[
         { label: "Home", href: "/#home" },
-        { label: "Work", href: "/#projects" },
+        { label: "Work", href: "/work" },
         { label: "About", href: "/about" },
         { label: "Contact", href: "/contact" },
         { label: "Client Login", href: "/portal" },
