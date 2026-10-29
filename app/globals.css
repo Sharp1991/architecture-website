@@ -1212,7 +1212,8 @@ body {
 }
 
 /* Work portfolio — match the About page theme */
-.work-page {
+.work-page,
+.project-page {
   --work-bg: var(--brand-bg);
   --work-panel: var(--brand-panel);
   --work-border: var(--brand-border);
