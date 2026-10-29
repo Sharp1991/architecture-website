@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import SiteHeader from "@/app/components/SiteHeader";
+import SiteHeader from "../../components/SiteHeader";
 import { projects } from "../projects";
 
 type Props = {
