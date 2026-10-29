@@ -1211,62 +1211,25 @@ body {
   }
 }
 
-/* Work page: use the existing Structura light theme */
+/* Work portfolio — match the About page theme */
 .work-page {
-  background: #f7f6f2;
-  color: #111920;
-}
+  --work-bg: var(--brand-bg);
+  --work-panel: var(--brand-panel);
+  --work-border: var(--brand-border);
+  --work-text: var(--brand-text);
+  --work-muted: var(--brand-muted);
+  --work-accent: var(--brand-accent-about);
 
-.work-page .work-hero,
-.work-page .work-section,
-.work-page .work-cta {
-  background: transparent;
-}
-
-.work-page .work-hero h1,
-.work-page .work-section-heading h2,
-.work-page .work-cta h2 {
-  color: #111920;
-}
-
-.work-page .work-intro,
-.work-page .work-section-note {
-  color: #5e666b;
-}
-
-.work-page .work-eyebrow,
-.work-page .chroma-category,
-.work-page .chroma-arrow {
-  color: #8b704c;
-}
-
-.work-page .work-scroll-link,
-.work-page .work-cta-link {
-  color: #111920;
-  border-color: #c9b89e;
-}
-
-.work-page .work-concepts {
-  background: #efeee8;
-  border-color: rgba(17,25,32,.12);
-}
-
-.work-page .chroma-card {
-  color: #111920;
-  background: rgba(255,255,255,.65);
-  border-color: rgba(17,25,32,.12);
-}
-
-.work-page .chroma-card:hover {
-  background: #fff;
-  border-color: #c9b89e;
-}
-
-.work-page .chroma-summary,
-.work-page .work-hero-index {
-  color: #5e666b;
-}
-
-.work-page .chroma-image-label {
-  color: #fff;
+  color: var(--work-text);
+  background:
+    linear-gradient(var(--brand-about-grid) 1px, transparent 1px),
+    linear-gradient(90deg, var(--brand-about-grid) 1px, transparent 1px),
+    radial-gradient(
+      ellipse at top left,
+      var(--brand-about-glow) 0%,
+      var(--brand-about-mid) 48%,
+      var(--work-bg) 100%
+    );
+  background-size: 40px 40px, 40px 40px, auto;
+  font-family: var(--brand-font-body);
 }
